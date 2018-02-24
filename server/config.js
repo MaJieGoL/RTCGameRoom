@@ -1,17 +1,14 @@
 const CONF = {
-  // 服务监听的端口，nginx反向代理配置时注意填写该端口
   port: '5757',
-
-  //
   rootPathname: '',
 
   // 微信小程序 App ID
-  appId: 'wxxxxxxxxxxxxxxxxxx',
+  appId: 'wx72faf0a41a541e0d',
 
   // 微信小程序 App Secret
-  appSecret: 'xxxxxxxxxxxxxxxxxxxwxxxxxxxxxxx',
+  appSecret: '1ee600add0d66ea80ab9546fb6283e00',
 
-  // 是否使用腾讯云代理登录小程序,没有用到腾讯云代理,这里默认填false
+  // 是否使用腾讯云代理登录小程序
   useQcloudLogin: false,
 
   /**
@@ -20,32 +17,20 @@ const CONF = {
    * 有介绍bizid 和 pushSecretKey的获取方法。
    */
   live: {
-    /**
-     *  云直播 appID:  和 APIKey 主要用于腾讯云直播common cgi请求。appid 用于表示您是哪个客户，APIKey参与了请求签名sign的生成。
-     *  后台用他们来校验common cgi调用的合法性
-     *  
-     */
-    appID: 1234567890,
-    
-    /**
-     *  云直播 bizid: 和pushSecretKey 主要用于推流地址的生成，填写错误，会导致推流地址不合法，推流请求被腾讯云直播服务器拒绝
-     */
-    bizid: 1234,
+    // 云直播 appid 
+    appID: 1255946708,
 
-    /**
-     *  云直播 推流防盗链key: 和 bizid 主要用于推流地址的生成，填写错误，会导致推流地址不合法，推流请求被腾讯云直播服务器拒绝
-     */
-    pushSecretKey: 'xxxxxxxxxxxxxxxxxxxxxxxxxxxx',
+    // 云直播 bizid 
+    bizid: 20231,
 
-    /**
-     *  云直播 API鉴权key: 和appID 主要用于common cgi请求。appid 用于表示您是哪个客户，APIKey参与了请求签名sign的生成。
-     *  后台用他们来校验common cgi调用的合法性。
-     */
-    APIKey: 'xxxxxxxxxxxxxxxxxxxxxxxxxxxx',
+    // 云直播 推流防盗链key
+    pushSecretKey: '48bbbc4782e4570022a7d9b337561299',
 
+    // 云直播 API鉴权key
+    APIKey: '364e4538b70567d8dbb700d92cc609cd',
 
     // 云直播 推流有效期单位秒 默认7天 
-    validTime: 3600*24*7 
+    validTime: 3600 * 24 * 7
   },
 
   /**
@@ -54,30 +39,21 @@ const CONF = {
    * 有介绍appid 和 accType的获取方法。以及私钥文件的下载方法。
    */
   im: {
-    /**
-     *  云通信 sdkAppID: accountType 和 privateKey 是云通信独立模式下，为您的独立账号 identifer，
-     *  派发访问云通信服务的userSig票据的重要信息，填写错误会导致IM登录失败，IM功能不可用
-     */
-    sdkAppID: 123456789,
+    // 云通信 sdkappid
+    sdkAppID: 1400063010,
 
-    /**
-     *  云通信 账号集成类型 accountType: sdkAppID 和 privateKey 是云通信独立模式下，为您的独立账户identifer，
-     *  派发访问云通信服务的userSig票据的重要信息，填写错误会导致IM登录失败，IM功能不可用
-     */ 
-    accountType: "12345",
+    // 云通信 账号集成类型
+    accountType: "21846",
 
     // 云通信 管理员账号
     administrator: "admin",
 
-    /**
-     *  云通信 派发usersig 采用非对称加密算法RSA，用私钥生成签名。privateKey就是用于生成签名的私钥，私钥文件可以在互动直播控制台获取
-     *  配置privateKey 
-     *  方式1. 将下载下来的keys.zip文件解压，拷贝其中的 private_key 文件到server/ 目录下 （推荐）
-     *  方式2. 将private_key文件的内容按下面的方式填写到 privateKey字段。
-     *  程序发现server目录下有private_key 文件会优先用文件。
-     *  详细的代码逻辑，可以参见 server/logic/im_mgr.js 文件，getSig函数的实现
-     */ 
-    privateKey: "-----BEGIN PRIVATE KEY-----\r\n" + "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\r\n" + "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\r\n" + "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\r\n" + "-----END PRIVATE KEY-----\r\n"
+    // 云通信 派发usersig的RSA 私钥
+    privateKey: "-----BEGIN PRIVATE KEY-----\r\n" +
+    "MIGHAgEAMBMGByqGSM49AgEGCCqGSM49AwEHBG0wawIBAQQgbTa5JsSAwYSTfA6/\r\n" +
+    "pmuK+Ngavy8soMnZqbBWnPNKuT+hRANCAAQm1I91oq1cGEMcVEFEwMbBDA/rQ1aV\r\n" +
+    "jRdaFIEArdbaXuE3jYTO4eMo3mzzEGXQam9VOgOvBpObjH6WpMgICmOU\r\n" +
+    "-----END PRIVATE KEY-----\r\n"
   },
 
   /**
@@ -110,7 +86,7 @@ const CONF = {
     // 文件夹
     uploadFolder: ''
   },
-  
+
   /**
    * 多人音视频房间相关参数
    */
@@ -153,7 +129,7 @@ const CONF = {
   /**
    * 辅助功能 后台日志文件获取相关 当前后台服务的访问域名。
    */
-  selfHost:"https://drourwkp.qcloud.la",
+  selfHost: "https://drourwkp.qcloud.la",
 
   // 微信登录态有效期
   wxLoginExpires: 7200

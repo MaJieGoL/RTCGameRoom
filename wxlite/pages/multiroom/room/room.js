@@ -8,7 +8,7 @@ Page({
       role: 'enter',      // 表示多人会话的角色，取值'enter'表示加入者，'create'表示创建者
       roomid: '',         // 房间id
       roomname: '',       // 房间名称
-      username: '',       // 用户名称haha
+      username: '',       // 用户名称
       config: {           //cameraview对应的配置项
         aspect: '3:4',     //设置画面比例，取值为'3:4'或者'9:16'
         minBitrate: 200,   //设置码率范围为[minBitrate,maxBitrate]，四人建议设置为200~400

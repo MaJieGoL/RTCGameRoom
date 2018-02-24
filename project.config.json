@@ -1,0 +1,17 @@
+{
+	"client": "./wxlite",
+	"svr": "./server",
+	"miniprogramRoot": "./wxlite",
+	"qcloudRoot": "./server",
+	"appid": "wx72faf0a41a541e0d",
+	"projectname": "RTCGameRoom",
+	"setting": {
+		"urlCheck": false,
+		"es6": true,
+		"postcss": true,
+		"minified": true,
+		"newFeature": true
+	},
+	"libVersion": "1.7.1",
+	"condition": {}
+}

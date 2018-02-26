@@ -24,7 +24,7 @@ Page({
 
   //根据游戏房间号gameRoomNum生成roomID
   genRoomID(gameRoomNum) {
-    return 'room_' + gameRoomNum;
+    return 'room_' + gameRoomNum + gameRoomNum + "_" + gameRoomNum;
   },
 
   //进入rtcroom页面

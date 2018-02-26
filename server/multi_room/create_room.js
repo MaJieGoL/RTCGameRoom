@@ -18,12 +18,10 @@ module.exports = async (ctx, next) => {
 
 
   var roomID;
-
-  while (1) {
-    roomID = liveutil.genRoomId();
-    while (roommgr.isRoomExist(roomID)) {
-      roomID = liveutil.genRoomId();
-    }
+  
+  while(1) {
+  // 根据游戏房间号生成roomID
+    roomID = "room_" + ctx.request.body.roomName + ctx.request.body.roomName + "_" + ctx.request.body.roomName;
 
     var result;
     try{

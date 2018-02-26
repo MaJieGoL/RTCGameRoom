@@ -28,7 +28,7 @@ Page({
       var toUrl = this.data.entryInfos[e.currentTarget.id].navigateTo;
       console.log(toUrl);
       wx.navigateTo({
-        url: toUrl,
+        url: toUrl + '?userName=' + this.data.userName,
       });
       this.setData({ 'tapTime': nowTime });
     } else {

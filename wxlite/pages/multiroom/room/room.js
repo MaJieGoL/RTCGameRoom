@@ -5,7 +5,7 @@ Page({
      * 页面的初始数据
      */
     data: {
-      role: 'enter',      // 表示多人会话的角色，取值'enter'表示加入者，'create'表示创建者
+      role: 'join',      // 表示多人会话的角色，取值'join'表示加入者，'create'表示创建者
       roomid: '',         // 房间id
       roomname: '',       // 房间名称
       username: '',       // 用户名称

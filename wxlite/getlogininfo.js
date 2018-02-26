@@ -66,32 +66,12 @@ function proto_getLoginInfo(options) {
       console.log('获取IM登录信息成功: ', ret.data);
       ret.data.serverDomain = config.url + '/weapp/' + options.type + '/';
       ret.data.userName = options.userName;
-      switch (options.type) {
-        case 'multi_room': {
-          rtcroom.init({
-            data: ret.data,
-            success: options.success,
-            fail: options.fail
-          });
-          break;
-        }
-        case 'double_room': {
-          rtcroom.init({
-            data: ret.data,
-            success: options.success,
-            fail: options.fail
-          });
-          break;
-        }
-        case 'live_room': {
-          liveroom.init({
-            data: ret.data,
-            success: options.success,
-            fail: options.fail
-          });
-          break;
-        }
-      }
+      // rtcroom初始化
+      rtcroom.init({
+        data: ret.data,
+        success: options.success,
+        fail: options.fail
+      });
     },
     fail: function (ret) {
       console.log('获取IM登录信息失败: ', ret);

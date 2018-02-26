@@ -10,7 +10,7 @@ Page({
 		tapTime: ''
 	},
 	// 绑定输入框
-	bindRoomName: function (e) {
+	bindRoomName(e) {
 		var self = this;
 		self.setData({
 			roomName: e.detail.value

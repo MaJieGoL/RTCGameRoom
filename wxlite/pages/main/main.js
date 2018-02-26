@@ -1,15 +1,19 @@
 // pages/main/main.js
+var getlogininfo = require('../../getlogininfo.js');
+
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
+    userName: '',
+    isGetLoginInfo: false,
     canShow: 0,
     tapTime: '',		// 防止两次点击操作间隔太快
     entryInfos: [
-      { icon: "../Resources/liveroom.png", title: "创建房间", navigateTo: "../multiroom/roomname/roomname" },
-      { icon: "../Resources/doubleroom.png", title: "进入房间", navigateTo: "../multiroom/roomlist/roomlist" }
+      { icon: "../Resources/liveroom.png", title: "创建房间", navigateTo: "../multiroom/createroom/createroom" },
+      { icon: "../Resources/doubleroom.png", title: "进入房间", navigateTo: "../multiroom/joinroom/joinroom" }
     ]
   },
 
@@ -59,7 +63,39 @@ Page({
     } else {
       // 版本正确，允许进入
       this.data.canShow = 1;
-    }
+    };
+
+    // 登录
+    wx.showLoading({
+      title: '登录信息获取中',
+    })
+    // rtcroom初始化
+    var self = this;
+    console.log(this.data);
+    getlogininfo.getLoginInfo({
+      type: 'multi_room',
+      success: function (ret) {
+        self.data.firstshow = false;
+        self.data.isGetLoginInfo = true;
+        console.log('我的昵称：', ret.userName);
+        self.setData({
+          userName: ret.userName
+        });
+        wx.hideLoading();
+      },
+      fail: function (ret) {
+        self.data.isGetLoginInfo = false;
+        wx.hideLoading();
+        wx.showModal({
+          title: '获取登录信息失败',
+          content: ret.errMsg,
+          showCancel: false,
+          complete: function () {
+            wx.navigateBack({});
+          }
+        });
+      }
+    });
   },
 
   /**

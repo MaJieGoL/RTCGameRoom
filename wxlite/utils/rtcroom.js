@@ -341,11 +341,11 @@ function mergePushers() {
 		type: 1,
 		success: function(ret) {
 			/**
-			 * enterPushers：新进推流人员信息
+			 * joinPushers：新进推流人员信息
 			 * leavePushers：退出推流人员信息
 			 * ishave：用于判断去重操作
 			 */
-			var enterPushers = [],leavePushers = [],ishave = 0;
+			var joinPushers = [],leavePushers = [],ishave = 0;
 			console.log('去重操作');
 			console.log('旧',roomInfo.pushers);
 			console.log('新',ret.pushers);
@@ -357,7 +357,7 @@ function mergePushers() {
 					}
 				});
 				if(!ishave)
-					enterPushers.push(val1);
+					joinPushers.push(val1);
 				ishave = 0;
 			});
 			roomInfo.pushers.forEach(function(val1) {
@@ -374,9 +374,9 @@ function mergePushers() {
 			// 重置roomInfo.pushers
 			roomInfo.pushers = ret.pushers;
 			// 通知有人进入房间
-			if(enterPushers.length) {
+			if(joinPushers.length) {
 				event.onPusherJoin({
-					pushers: enterPushers
+					pushers: joinPushers
 				});
 			}
 			// 通知有人退出房间
@@ -724,9 +724,9 @@ function joinPusher(options) {
 	}
 	roomInfo.roomID = options.data.roomID;
   roomInfo.isDestory = false;
-	proto_enterRoom(options);
+	proto_joinRoom(options);
 }
-function proto_enterRoom(options) {
+function proto_joinRoom(options) {
 	// 进入IM群
 	webimhandler.applyJoinBigGroup(roomInfo.roomID, afterJoinBigGroup, {
 		success: function() {
@@ -772,7 +772,7 @@ function proto_enterRoom(options) {
 }
 
 /**
- * [enterRoom 进入房间]
+ * [joinRoom 进入房间]
  * @param {options}
  *   data: {  
  *   	roomID: 房间ID
@@ -780,12 +780,12 @@ function proto_enterRoom(options) {
  *   success: 成功回调
  *   fail: 失败回调
  */
-function enterRoom(options) {
+function joinRoom(options) {
 	if(!options || !options.data.roomID) { 
-		console.log('enterRoom参数错误',options); 
+		console.log('joinRoom参数错误',options); 
 		options.fail && options.fail({
 			errCode: -9,
-			errMsg: 'enterRoom参数错误'
+			errMsg: 'joinRoom参数错误'
 		});
 		return; 
 	}
@@ -876,7 +876,7 @@ module.exports = {
 	getRoomList: getRoomList,			// 拉取房间列表
 	getPushURL: getPushURL,				// 拉取推流地址
 	createRoom: createRoom,				// 创建房间
-	enterRoom: enterRoom,				// 加入房间
+	joinRoom: joinRoom,				// 加入房间
 	joinPusher: joinPusher,				// 加入推流
 	exitRoom: exitRoom,					// 退出房间
 	sendRoomTextMsg: sendRoomTextMsg,	// 发送文本消息

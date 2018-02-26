@@ -2,8 +2,8 @@
   "pages": [
     "pages/main/main",
     "pages/multiroom/room/room",
-    "pages/multiroom/roomlist/roomlist",
-    "pages/multiroom/roomname/roomname"
+    "pages/multiroom/createroom/createroom",
+    "pages/multiroom/joinroom/joinroom"
   ],
   "networkTimeout": {
     "request": 60000

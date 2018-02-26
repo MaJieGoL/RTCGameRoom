@@ -1,0 +1,10 @@
+<!--pages/multiroom/joinroom/joinroom.wxml-->
+<view class='container-box'>
+  <view class='extext'>输入房间号</view>
+  <view class="input-box">
+    <input value="{{gameRoomNum}}" maxlength="20" bindinput='bindGameRoomNum' placeholder="输入游戏房间号" />
+  </view>
+</view>
+<view class='bottom-btn'> 
+  <button type="primary" bindtap="join" hover-class="none">确定加入房间</button>
+</view> 

@@ -10,8 +10,8 @@ Component({
     roomname: { type: String, value: 'roomname' },
     // 用户名称
     username: { type: String, value: '' },
-    // 类型：create/enter
-    role: { type: String, value: 'enter' },
+    // 类型：create/join
+    role: { type: String, value: 'join' },
     // 推流code
     event: { type: Number, value: 0, observer: function (newVal, oldVal) { this.onPush(newVal); } },
     // 评论信息
@@ -72,9 +72,9 @@ Component({
             pushURL: ret.pushURL
           });
           self.setListener();
-          self.data.role == 'enter' && self.enterRoom();
+          self.data.role == 'join' && self.joinRoom();
           // 小程序开发工具测试代码
-          // self.data.role == 'enter' && self.joinPusher();
+          // self.data.role == 'join' && self.joinPusher();
           // self.data.role == 'create' && self.createRoom();
         },
         fail: function (ret) {
@@ -88,9 +88,9 @@ Component({
       });
     },
     // 进入房间
-    enterRoom: function () {
+    joinRoom: function () {
       var self = this;
-      rtcroom.enterRoom({
+      rtcroom.joinRoom({
         data: { roomID: self.data.roomid },
         success: function () { },
         fail: function (ret) {
@@ -169,7 +169,7 @@ Component({
         case 1002: {
           if (!self.data.isInRoom) {
             self.setData({ isInRoom: true });
-            if (self.data.role == 'enter') {
+            if (self.data.role == 'join') {
               self.joinPusher();
             } else {
               self.createRoom();

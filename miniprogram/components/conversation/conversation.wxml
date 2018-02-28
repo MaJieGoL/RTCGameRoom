@@ -1,0 +1,290 @@
+<view>
+  <scroll-view scroll-y scroll-into-view="{{conversation[conversation.length - 1].id}}" class="chat">
+    <view class="chat-item" wx:for="{{conversation}}" wx:key="{{item.id}}" class="{{item.stylename}}">
+      <view id="{{item.id}}" class="{{item.style === 'important' ? 'important' : 'system-message'}}" wx:if="{{item.type === 'systemmsg' && item.player.Identification === 'SYSTEM'}}" hidden="{{showImportant}}">
+        <view>
+          <text>{{item.message}}</text>
+        </view>
+      </view>
+
+      <view id="{{item.id}}" class="person" class="{{item.stylename === 'self' ? 'self-img' : 'other-img'}}" wx:if="{{item.type === 'chatmsg' && item.player.Identification !== 'SYSTEM' && (item.playerSay || (!item.playerSay && Display.ifShowOBSay))}}" hidden="{{showImportant}}">
+        <view class="avatar">
+          <view wx:if="{{item.playerSay}}" style="background-position:{{(10 - item.player.Identification) * 17}}px;"></view>
+          <image src="{{item.playerSay ? item.player.WeixinUserInfo.headimgurl : item.player.headimgurl}}"></image>
+        </view>
+      </view>
+
+      <view class="{{item.stylename === 'self' ? 'self-chat' : 'other-chat'}}" wx:if="{{item.type === 'chatmsg' && item.player.Identification !== 'SYSTEM' && (item.playerSay || (!item.playerSay && Display.ifShowOBSay))}}" hidden="{{showImportant}}">
+        <view class="chat-view-child-1" wx:if="{{item.stylename !== 'self'}}">
+          {{item.playerSay ? item.player.WeixinUserInfo.nickname : '<观战>' + item.player.nickname}}
+        </view>
+        <view class="{{item.playerSay ? '' : 'OBSaymsg'}}">
+          <text>{{item.message}}</text>
+        </view>
+      </view>
+
+      <view id="{{item.id}}" class="role" wx:if="{{item.type === 'role'}}">
+        <view bindtap="seeRole" class="role-child-1">
+          身份信息
+          <!-- <i class="fa fa-eye" aria-hidden="true" v-show="!ifShowRole"></i>
+          <i class="fa fa-eye-slash" aria-hidden="true" v-show="ifShowRole"></i> -->
+        </view>
+        <view wx:if="ifShowRole" class="role-child-2">
+          <view class="role-child-child-1">
+            <text class="role-child-child-1-text-1">您的身份是：<text class="{{item.player.Faction === 1 ? 'goodPeople': ''}}">{{item.role}}</text></text>
+            <text class="role-child-child-1-text-2">{{item.message}}</text>
+          </view>
+          <view class="roleImg role-child-2-child-2">
+            <view class="roleImg-child-1">
+              <image wx:if="{{game.GameType === 1 && item.player.Faction === 0}}" src="../roleimg/角色/抵抗组织/坏人.png"></image>
+              <image wx:if="{{game.GameType === 1 && item.player.Faction === 1 && (item.player.WeixinUserInfo.sex === 1 || item.player.WeixinUserInfo.sex === 0)}}" src="../roleimg/角色/抵抗组织/好人1.png"></image>
+              <image wx:if="{{game.GameType === 1 && item.player.Faction === 1 && item.player.WeixinUserInfo.sex === 2}}" src="../roleimg/角色/抵抗组织/好人-女-1.png"></image>
+              <image wx:if="{{game.GameType === 2 && item.player.AvalonRole.Identification === 'A'}}" src="../roleimg/角色/阿瓦隆/梅林.png"></image>
+              <image wx:if="{{game.GameType === 2 && item.player.AvalonRole.Identification === 'B'}}" src="../roleimg/角色/阿瓦隆/派西维尔.png"></image>
+              <image wx:if="{{game.GameType === 2 && item.player.AvalonRole.Identification === 'C'}}" src="../roleimg/角色/阿瓦隆/莫甘娜.png"></image>
+              <image wx:if="{{game.GameType === 2 && item.player.AvalonRole.Identification === 'D'}}" src="../roleimg/角色/阿瓦隆/刺客.png"></image>
+              <image wx:if="{{game.GameType === 2 && item.player.AvalonRole.Identification === 'E'}}" src="../roleimg/角色/阿瓦隆/奥伯伦.png"></image>
+              <image wx:if="{{game.GameType === 2 && item.player.AvalonRole.Identification === 'F'}}" src="../roleimg/角色/阿瓦隆/梅林.png"></image>
+              <image wx:if="{{game.GameType === 2 && item.player.AvalonRole.Identification === '' && item.player.Faction === 0}}" src="../roleimg/角色/阿瓦隆/莫德雷德的爪牙.png"></image>
+              <image wx:if="{{game.GameType === 2 && item.player.AvalonRole.Identification === '' && item.player.Faction === 1 && item.player.WeixinUserInfo.sex === 1}}" src="../roleimg/角色/阿瓦隆/好人.png"></image>
+              <image wx:if="{{game.GameType === 2 && item.player.AvalonRole.Identification === '' && item.player.Faction === 1 && item.player.WeixinUserInfo.sex === 2}}" src="../roleimg/角色/阿瓦隆/好人-女-1.png"></image>
+              <image wx:if="{{game.GameType === 3 && item.player.CiqinRole.Name === '赢政'}}" src="../roleimg/角色/刺秦/赢政.png"></image>
+              <image wx:if="{{game.GameType === 3 && item.player.CiqinRole.Name === '赢渠梁'}}" src="../roleimg/角色/刺秦/赢政.png"></image>
+              <image wx:if="{{game.GameType === 3 && item.player.CiqinRole.Name === '荆轲'}}" src="../roleimg/角色/刺秦/荆轲.png"></image>
+              <image wx:if="{{game.GameType === 3 && item.player.CiqinRole.Name === '高渐离'}}" src="../roleimg/角色/刺秦/高渐离.png"></image>
+              <image wx:if="{{game.GameType === 3 && item.player.CiqinRole.Name === '李斯'}}" src="../roleimg/角色/刺秦/李斯.png"></image>
+              <image wx:if="{{game.GameType === 3 && item.player.CiqinRole.Name === '秦舞阳'}}" src="../roleimg/角色/刺秦/秦舞阳.png"></image>
+              <image wx:if="{{game.GameType === 3 && item.player.CiqinRole.Name === '苏秦'}}" src="../roleimg/角色/刺秦/苏秦.png"></image>
+              <image wx:if="{{game.GameType === 3 && item.player.CiqinRole.Name === '太子丹'}}" src="../roleimg/角色/刺秦/太子丹.png"></image>
+              <image wx:if="{{game.GameType === 3 && item.player.CiqinRole.Name === '' && item.player.Faction === 0}}" src="../roleimg/角色/刺秦/间谍1.png"></image>
+              <image wx:if="{{game.GameType === 3 && item.player.CiqinRole.Name === '' && item.player.Faction === 1}}" src="../roleimg/角色/刺秦/忠臣1.png"></image>
+            </view>
+            <view class="roleImg-child-2">
+              <image wx:if="{{game.GameType === 1 && item.player.Faction === 0}}" src="../roleimg/角色名牌/抵抗组织/间谍.png"></image>
+              <image wx:if="{{game.GameType === 1 && item.player.Faction === 1}}" src="../roleimg/角色名牌/抵抗组织/忠臣.png"></image>
+              <image wx:if="{{game.GameType === 2 && item.player.AvalonRole.Identification === 'A'}}" src="../roleimg/角色名牌/阿瓦隆/梅林.png"></image>
+              <image wx:if="{{game.GameType === 2 && item.player.AvalonRole.Identification === 'B'}}" src="../roleimg/角色名牌/阿瓦隆/派西维尔.png"></image>
+              <image wx:if="{{game.GameType === 2 && item.player.AvalonRole.Identification === 'C'}}" src="../roleimg/角色名牌/阿瓦隆/莫甘娜.png"></image>
+              <image wx:if="{{game.GameType === 2 && item.player.AvalonRole.Identification === 'D'}}" src="../roleimg/角色名牌/阿瓦隆/刺客.png"></image>
+              <image wx:if="{{game.GameType === 2 && item.player.AvalonRole.Identification === 'E'}}" src="../roleimg/角色名牌/阿瓦隆/奥伯伦.png"></image>
+              <image wx:if="{{game.GameType === 2 && item.player.AvalonRole.Identification === 'F'}}" src="../roleimg/角色名牌/阿瓦隆/莫德雷德.png"></image>
+              <image wx:if="{{game.GameType === 2 && item.player.AvalonRole.Identification === '' && item.player.Faction === 0}}" src="../roleimg/角色名牌/阿瓦隆/爪牙.png"></image>
+              <image wx:if="{{game.GameType === 2 && item.player.AvalonRole.Identification === '' && item.player.Faction === 1}}" src="../roleimg/角色名牌/阿瓦隆/忠臣.png"></image>
+              <image wx:if="{{game.GameType === 3 && item.player.CiqinRole.Name === '赢政'}}" src="../roleimg/角色名牌/刺秦/嬴政.png"></image>
+              <image wx:if="{{game.GameType === 3 && item.player.CiqinRole.Name === '赢渠梁'}}" src="../roleimg/角色名牌/刺秦/秦王2.png"></image>
+              <image wx:if="{{game.GameType === 3 && item.player.CiqinRole.Name === '荆轲'}}" src="../roleimg/角色名牌/刺秦/荆轲.png"></image>
+              <image wx:if="{{game.GameType === 3 && item.player.CiqinRole.Name === '高渐离'}}" src="../roleimg/角色名牌/刺秦/高渐离.png"></image>
+              <image wx:if="{{game.GameType === 3 && item.player.CiqinRole.Name === '李斯'}}" src="../roleimg/角色名牌/刺秦/李斯.png"></image>
+              <image wx:if="{{game.GameType === 3 && item.player.CiqinRole.Name === '秦舞阳'}}" src="../roleimg/角色名牌/刺秦/秦舞阳.png"></image>
+              <image wx:if="{{game.GameType === 3 && item.player.CiqinRole.Name === '苏秦'}}" src="../roleimg/角色名牌/刺秦/苏秦.png"></image>
+              <image wx:if="{{game.GameType === 3 && item.player.CiqinRole.Name === '太子丹'}}" src="../roleimg/角色名牌/刺秦/太子丹.png"></image>
+              <image wx:if="{{game.GameType === 3 && item.player.CiqinRole.Name === '' && item.player.Faction === 0}}" src="../roleimg/角色名牌/刺秦/间谍.png"></image>
+              <image wx:if="{{game.GameType === 3 && item.player.CiqinRole.Name === '' && item.player.Faction === 1}}" src="../roleimg/角色名牌/刺秦/忠臣.png"></image>
+            </view>
+          </view>
+        </view>
+      </view>
+
+      <view id="{{item.id}}" class="group-vote-message" wx:if="{{item.type === 'groupVoteMsg'}}">
+        <view class="playerlist-container">
+          <view class="playerlist-container-ul">
+            <view class="playerlist-photo playerlist-container-ul-li" wx:for="{{item.playerList}}" wx:for-item="item_1" wx:key="{{item_1.Identification}}">
+              <view class="playerlist-container-ul-li-child-1" wx:if="{{item_1.style === 'un-vote'}}"></view>
+              <view class="playerlist-container-ul-li-child-2" wx:if="{{item_1.isLeader}}">
+                <image src="../assets/队长标记.png"></image>
+              </view>
+              <view class="playerlist-container-ul-li-child-3" style="background-position:{{(10 - item_1.Identification) * 17}}px;"></view>
+              <image src="{{item_1.WeixinUserInfo.headimgurl}}" class="{{item_1.inGroup ? 'inGroup playerlist-container-ul-li-child-4': 'playerlist-container-ul-li-child-4'}}"></image>
+            </view>
+          </view>
+        </view>
+        <view class="group-vote-message-child-2">
+          <view class="makeGroupVote" wx:if="{{!OB && !item.ifVoted}}">
+            <view class="makeGroupVote-child makeGroupVote-child-1">
+              <view bindtap="agreeMakeGroup" class="makeGroupVote-child-child">
+                <image src="../assets/同意.png"></image>
+                <text>同意</text>
+              </view>
+            </view>
+            <view class="makeGroupVote-child makeGroupVote-child-2">
+              <view bindtap="disagreeMakeGroup" class="makeGroupVote-child-child">
+                <image src="../assets/反对.png"></image>
+                <text>反对</text>
+              </view>
+            </view>
+          </view>
+          <view class="vote-result" wx:if="{{item.ifShowMakeGroupVoteResult}}">
+            <view class="vote-result-child">
+              <view wx:for="{{item.playerList}}" wx:for-item="item_2" wx:key="{{item_2.Identification}}" class="vote-result-child-child">
+                <icon type="success" size="23" color="#007AFF" wx:if="{{item_2.vote === 1}}" />
+                <icon type="cancel" size="23" color="#FF3B30" wx:if="{{item_2.vote === 0}}"/>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+
+      <view id="{{item.id}}" class="mission-vote" wx:if="{{item.type === 'missionVoteMsg'}}" wx:if="{{!(item.missionVotedPlayerCount === item.playerList.length)}}">
+        <view class="mission-vote-ul" wx:if="{{!item.ifMissionVoted && item.showVote}}">
+          <view wx:for="{{item.playerList}}" wx:for-item="item_3" wx:key="{{item_3.Identification}}" class="mission-vote-ul-li">
+            <view class="mission-vote-ul-li-child">
+              <view class="mission-vote-ul-li-child-div" style="background-position:{{(10 - item_3.Identification) * 17}}px;"></view>
+              <image class="{{item_3.style}}" src="{{item_3.WeixinUserInfo.headimgurl}}"></image>
+            </view>
+          </view>
+        </view>
+        <view class="mission-vote-child-2" wx:if="{{!item.ifMissionVoted && item.showVote}}">
+          <view class="mission-vote-child-2-child">
+            <view bindtap="agreeMission" class="mission-vote-child-2-child-child mission-vote-child-2-child-child-color-1">
+              <image src="../assets/任务成功.png"></image>
+              <text>任务成功</text>
+            </view>
+          </view>
+          <view class="mission-vote-child-2-child" wx:if="{{player.Faction === 0}}">
+            <view bindtap="disagreeMission" class="mission-vote-child-2-child-child mission-vote-child-2-child-child-color-2">
+              <image src="../assets/任务失败.png"></image>
+              <text>任务失败</text>
+            </view>
+          </view>
+        </view>
+      </view>
+
+      <view id="{{item.id}}" class="mission-vote-result" wx:if="{{item.type === 'finishMissionVoteMsg'}}">
+        <view class="mission-vote-result-ul">
+          <view class="mission-vote-result-ul-li" wx:for="{{item.playerList}}" wx:for-item="item_4" wx:key="{{item_4.Identification}}">
+            <view class="mission-vote-result-ul-li-div" style="background-position:{{(10 - item_4.Identification) * 17}}px;"></view>
+            <image class="mission-vote-result-ul-li-image" src="{{item_4.WeixinUserInfo.headimgurl}}"></image>
+          </view>
+        </view>
+        <view class="mission-vote-result-child-2">
+          <view class="mission-vote-result-child-2-child">
+            <image class="mission-vote-result-child-2-child-image" src="../assets/任务成功.png"></image>
+            <text class="mission-vote-result-child-2-child-text">{{item.agree}}</text>
+          </view>
+          <view class="mission-vote-result-child-2-child">
+            <image class="mission-vote-result-child-2-child-image" src="../assets/任务失败.png"></image>
+            <text class="mission-vote-result-child-2-child-text">{{item.disagree}}</text>
+          </view>
+        </view>
+        <view class="mission-vote-result-child-3">
+          <image class="mission-vote-result-child-3-image" wx:if="{{item.result}}" src="../assets/任务成功1.png"></image>
+          <image class="mission-vote-result-child-3-image" wx:if="{{!item.result}}" src="../assets/任务失败1.png"></image>
+        </view>
+      </view>
+
+      <view id="{{item.id}}" class="gamerule" wx:if="{{item.type === 'gamerule'}}">
+        <view class="gamerule-child">
+          <view class="gamerule-child-child-1">
+            游戏规则
+          </view>
+          <view class="gamerule-child-child-2">
+            <view class="gamerule-child-child-2-child gamerule-child-child-2-child-1">
+              <text class="gamerule-child-child-2-child-1-text-1" wx:if="{{item.gameType === 2}}">阿瓦隆</text>
+              <text class="gamerule-child-child-2-child-1-text-2" wx:if="{{item.gameType === 1}}">抵抗组织</text>
+              <text class="gamerule-child-child-2-child-1-text-3" wx:if="{{item.gameType === 3}}">刺秦</text>
+              <text class="gamerule-child-child-2-child-1-text-4">{{item.playerCount}}人局</text>
+              <text class="gamerule-child-child-2-child-1-text-5" wx:if="{{item.public}}">公开房间</text>
+              <text class="gamerule-child-child-2-child-1-text-6" wx:if="{{!item.public}}">私密房间</text>
+            </view>
+            <view class="gamerule-child-child-2-child gamerule-child-child-2-child-2">
+              组队投票详情：<text wx:if="{{item.votePublish}}">显示</text><text wx:if="{{!item.votePublish}}">隐藏</text>
+            </view>
+            <view class="gamerule-child-child-2-child gamerule-child-child-2-child-3">
+              发言时间：{{item.chatTime}}秒
+            </view>
+            <view class="gamerule-child-child-2-child gamerule-child-child-2-child-4" wx:if="{{item.FullGameMakeGroupRoundLimit}}">
+              全局否决计数：{{item.MakeGroupRoundLimit}}次
+            </view>
+            <view class="gamerule-child-child-2-child gamerule-child-child-2-child-5" wx:if="{{!item.FullGameMakeGroupRoundLimit}}">
+              每轮任务否决计数：{{item.MakeGroupRoundLimit}}次
+            </view>
+          </view>
+        </view>
+      </view>
+
+      <view id="{{item.id}}" class="mvp-vote" wx:if="{{!OB && game.GameInfo.Finished && item.type === 'mvpVote' && !ifVotedMvp && !ifMvped}}">
+        <view class="mvp-vote-ul">
+          <view class="mvp-vote-ul-li" wx:for="{{game.PlayerList}}" wx:for-item="item_5" wx:key="{{item_5.Identification}}">
+            <view data-identification="{{item_5.Identification}}" bindtap="chooseMvp" class="{{choose === item_5.Identification ? 'active-mvp mvp-vote-ul-li-child' : 'mvp-vote-ul-li-child'}}">
+              <view style="background-position:{{(10 - item_5.Identification) * 17}}px;"></view>
+              <image src="{{item_5.WeixinUserInfo.headimgurl}}"></image>
+            </view>
+          </view>
+        </view>
+        <view class="mvp-vote-child" bindtap="sendMvp">mvp</view>
+      </view>
+
+      <view id="{{item.id}}" class="gamelog" wx:if="{{item.type === 'gameLog'}}">
+        <view class="gamelog-child-1">
+          <image wx:if="{{(item.gameLog.result === 'win' && player.Faction === 1) || (item.gameLog.result === 'lose' && player.Faction === 0)}}" src="../assets/胜利标志.png"></image>
+          <image wx:if="{{(item.gameLog.result === 'lose' && player.Faction === 1) || (item.gameLog.result === 'win' && player.Faction === 0)}}" src="../assets/失败标志.png"></image>
+        </view>
+        <view class="gamelog-ul">
+          <view class="gamelog-ul-li" wx:for="{{item.gameLog.game.PlayerList}}" wx:for-item="item_6" wx:key="{{item_6.Identification}}">
+            <view class="gamelog-ul-li-child gamelog-ul-li-child-1">
+              <view class="gamelog-ul-li-child-1-child-1">
+                <image src="{{item_6.WeixinUserInfo.headimgurl}}"></image>
+              </view>
+              <text class="gamelog-ul-li-child-1-text">{{item_6.WeixinUserInfo.nickname}}</text>
+              <view class="gamelog-ul-li-child-1-child-3" wx:if="{{item.mvp === item_6.Identification}}"></view>
+            </view>
+            <view class="gamelog-ul-li-child gamelog-ul-li-child-2">
+              <view class="gamelog-ul-li-child-2-child-1"></view>
+              <text class="gamelog-ul-li-child-2-text">{{game.GameLog.ScoreLog[item_6.WeixinUserInfo.openid] < 0 ? game.GameLog.ScoreLog[item_6.WeixinUserInfo.openid] : '+' + game.GameLog.ScoreLog[item_6.WeixinUserInfo.openid]}}</text>
+              <view class="gamelog-ul-li-child-2-child-3">
+                <image wx:if="{{game.GameType === 1 && item_6.Faction === 0}}" src="../roleimg/角色名牌/抵抗组织/间谍.png"></image>
+                <image wx:if="{{game.GameType === 1 && item_6.Faction === 1}}" src="../roleimg/角色名牌/抵抗组织/忠臣.png"></image>
+                <image wx:if="{{game.GameType === 2 && item_6.AvalonRole.Identification === 'A'}}" src="../roleimg/角色名牌/阿瓦隆/梅林.png"></image>
+                <image wx:if="{{game.GameType === 2 && item_6.AvalonRole.Identification === 'B'}}" src="../roleimg/角色名牌/阿瓦隆/派西维尔.png"></image>
+                <image wx:if="{{game.GameType === 2 && item_6.AvalonRole.Identification === 'C'}}" src="../roleimg/角色名牌/阿瓦隆/莫甘娜.png"></image>
+                <image wx:if="{{game.GameType === 2 && item_6.AvalonRole.Identification === 'D'}}" src="../roleimg/角色名牌/阿瓦隆/刺客.png"></image>
+                <image wx:if="{{game.GameType === 2 && item_6.AvalonRole.Identification === 'E'}}" src="../roleimg/角色名牌/阿瓦隆/奥伯伦.png"></image>
+                <image wx:if="{{game.GameType === 2 && item_6.AvalonRole.Identification === 'F'}}" src="../roleimg/角色名牌/阿瓦隆/莫德雷德.png"></image>
+                <image wx:if="{{game.GameType === 2 && item_6.AvalonRole.Identification === '' && item_6.Faction === 0}}" src="../roleimg/角色名牌/阿瓦隆/爪牙.png"></image>
+                <image wx:if="{{game.GameType === 2 && item_6.AvalonRole.Identification === '' && item_6.Faction === 1}}" src="../roleimg/角色名牌/阿瓦隆/忠臣.png"></image>
+                <image wx:if="{{game.GameType === 3 && item_6.CiqinRole.Name === '赢政'}}" src="../roleimg/角色名牌/刺秦/嬴政.png"></image>
+                <image wx:if="{{game.GameType === 3 && item_6.CiqinRole.Name === '赢渠梁'}}" src="../roleimg/角色名牌/刺秦/秦王2.png"></image>
+                <image wx:if="{{game.GameType === 3 && item_6.CiqinRole.Name === '荆轲'}}" src="../roleimg/角色名牌/刺秦/荆轲.png"></image>
+                <image wx:if="{{game.GameType === 3 && item_6.CiqinRole.Name === '高渐离'}}" src="../roleimg/角色名牌/刺秦/高渐离.png"></image>
+                <image wx:if="{{game.GameType === 3 && item_6.CiqinRole.Name === '李斯'}}" src="../roleimg/角色名牌/刺秦/李斯.png"></image>
+                <image wx:if="{{game.GameType === 3 && item_6.CiqinRole.Name === '秦舞阳'}}" src="../roleimg/角色名牌/刺秦/秦舞阳.png"></image>
+                <image wx:if="{{game.GameType === 3 && item_6.CiqinRole.Name === '苏秦'}}" src="../roleimg/角色名牌/刺秦/苏秦.png"></image>
+                <image wx:if="{{game.GameType === 3 && item_6.CiqinRole.Name === '太子丹'}}" src="../roleimg/角色名牌/刺秦/太子丹.png"></image>
+                <image wx:if="{{game.GameType === 3 && item_6.CiqinRole.Name === '' && item_6.Faction === 0}}" src="../roleimg/角色名牌/刺秦/间谍.png"></image>
+                <image wx:if="{{game.GameType === 3 && item_6.CiqinRole.Name === '' && item_6.Faction === 1}}" src="../roleimg/角色名牌/刺秦/忠臣.png"></image>
+              </view>
+              <view class="gamelog-ul-li-child-2-child-4">
+                <image wx:if="{{game.GameType === 1 && item_6.Faction === 0}}" src="../roleimg/角色/抵抗组织/坏人.png"></image>
+                <image wx:if="{{game.GameType === 1 && item_6.Faction === 1 && (item_6.WeixinUserInfo.sex === 1 || item_6.WeixinUserInfo.sex === 0)}}" src="../roleimg/角色/抵抗组织/好人1.png"></image>
+                <image wx:if="{{game.GameType === 1 && item_6.Faction === 1 && item_6.WeixinUserInfo.sex === 2}}" src="../roleimg/角色/抵抗组织/好人-女-1.png"></image>
+                <image wx:if="{{game.GameType === 2 && item_6.AvalonRole.Identification === 'A'}}" src="../roleimg/角色/阿瓦隆/梅林.png"></image>
+                <image wx:if="{{game.GameType === 2 && item_6.AvalonRole.Identification === 'B'}}" src="../roleimg/角色/阿瓦隆/派西维尔.png"></image>
+                <image wx:if="{{game.GameType === 2 && item_6.AvalonRole.Identification === 'C'}}" src="../roleimg/角色/阿瓦隆/莫甘娜.png"></image>
+                <image wx:if="{{game.GameType === 2 && item_6.AvalonRole.Identification === 'D'}}" src="../roleimg/角色/阿瓦隆/刺客.png"></image>
+                <image wx:if="{{game.GameType === 2 && item_6.AvalonRole.Identification === 'E'}}" src="../roleimg/角色/阿瓦隆/奥伯伦.png"></image>
+                <image wx:if="{{game.GameType === 2 && item_6.AvalonRole.Identification === 'F'}}" src="../roleimg/角色/阿瓦隆/梅林.png"></image>
+                <image wx:if="{{game.GameType === 2 && item_6.AvalonRole.Identification === '' && item_6.Faction === 0}}" src="../roleimg/角色/阿瓦隆/莫德雷德的爪牙.png"></image>
+                <image wx:if="{{game.GameType === 2 && item_6.AvalonRole.Identification === '' && item_6.Faction === 1 && (item_6.WeixinUserInfo.sex === 1 || item_6.WeixinUserInfo.sex === 0)}}" src="../roleimg/角色/阿瓦隆/好人.png"></image>
+                <image wx:if="{{game.GameType === 2 && item_6.AvalonRole.Identification === '' && item_6.Faction === 1 && item_6.WeixinUserInfo.sex === 2}}" src="../roleimg/角色/阿瓦隆/好人-女-1.png"></image>
+                <image wx:if="{{game.GameType === 3 && item_6.CiqinRole.Name === '赢政'}}" src="../roleimg/角色/刺秦/赢政.png"></image>
+                <image wx:if="{{game.GameType === 3 && item_6.CiqinRole.Name === '赢渠梁'}}" src="../roleimg/角色/刺秦/赢政.png"></image>
+                <image wx:if="{{game.GameType === 3 && item_6.CiqinRole.Name === '荆轲'}}" src="../roleimg/角色/刺秦/荆轲.png"></image>
+                <image wx:if="{{game.GameType === 3 && item_6.CiqinRole.Name === '高渐离'}}" src="../roleimg/角色/刺秦/高渐离.png"></image>
+                <image wx:if="{{game.GameType === 3 && item_6.CiqinRole.Name === '李斯'}}" src="../roleimg/角色/刺秦/李斯.png"></image>
+                <image wx:if="{{game.GameType === 3 && item_6.CiqinRole.Name === '秦舞阳'}}" src="../roleimg/角色/刺秦/秦舞阳.png"></image>
+                <image wx:if="{{game.GameType === 3 && item_6.CiqinRole.Name === '苏秦'}}" src="../roleimg/角色/刺秦/苏秦.png"></image>
+                <image wx:if="{{game.GameType === 3 && item_6.CiqinRole.Name === '太子丹'}}" src="../roleimg/角色/刺秦/太子丹.png"></image>
+                <image wx:if="{{game.GameType === 3 && item_6.CiqinRole.Name === '' && item_6.Faction === 0}}" src="../roleimg/角色/刺秦/间谍1.png"></image>
+                <image wx:if="{{game.GameType === 3 && item_6.CiqinRole.Name === '' && item_6.Faction === 1}}" src="../roleimg/角色/刺秦/忠臣1.png"></image>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+
+      <view id="{{item.id}}" class="outgame" wx:if="{{item.type === 'outgame'}}" bindtap="outgame">
+        退出游戏
+      </view>
+    </view>
+  </scroll-view>
+</view>

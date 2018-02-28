@@ -1,0 +1,27 @@
+<view>
+  <view class="container-child-1"></view>
+  <view class="container-child-2">
+    <view class="content">
+      <view class="content-child-1">
+        <image src="{{playerInfo.headimgurl}}"></image>
+        <text>{{playerInfo.nickname}}</text>
+        <view catchtap="follow" data-openid="{{playerInfo.openid}}" wx:if="{{!ifFollowed}}">关注</view>
+        <view catchtap="unfollow" data-openid="{{playerInfo.openid}}" wx:if="{{ifFollowed}}">取消关注</view>
+      </view>
+      <view class="content-child-2">
+        <view class="content-child-2-child">
+          <view class="content-child-2-child-child-1">积分</view>
+          <view>{{playerInfo.score}}</view>
+        </view>
+        <view class="content-child-2-child">
+          <view class="content-child-2-child-child-1">胜率</view>
+          <view>{{playerInfo.allWinRate}}</view>
+        </view>
+        <view class="content-child-2-child">
+          <view class="content-child-2-child-child-1">MVP</view>
+          <view>0次</view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

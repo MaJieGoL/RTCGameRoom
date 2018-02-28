@@ -1,0 +1,8 @@
+{
+  "usingComponents": {
+    "conversation": "../../components/conversation/conversation",
+    "makegroup": "../../components/makegroup/makegroup",
+    "killmerlin": "../../components/killmerlin/killmerlin",
+    "info": "../../components/info/info"
+  }
+}

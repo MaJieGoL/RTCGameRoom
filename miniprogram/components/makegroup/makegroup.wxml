@@ -1,0 +1,18 @@
+<view>
+  <view class="weui-mask"></view>
+  <view class="list-container">
+    <view class="list-container-child-1">请选择{{game.GameConfig.RoundGroupRules[game.GameInfo.CurrentRound].GroupPlayerCount}}位玩家进行组队</view>
+    <view class="list-container-child-2">
+      <view wx:for="{{game.PlayerList}}" wx:key="{{item.Identification}}" class="list-container-child-child">
+        <view bindtap="selectPlayerToMakeGroup" data-identification="{{item.Identification}}">
+          <view class="list-container-child-child-child-child-1" wx:if="{{!viewList[item.Identification - 1]}}"></view>
+          <view class="list-container-child-child-child-child-2" style="background-position:{{(10 - item.Identification) * 17}}px;"></view>
+          <image src="{{item.WeixinUserInfo.headimgurl}}"></image>
+        </view>
+      </view>
+    </view>
+    <view bindtap="sendMakeGroup" class="list-container-child-3">
+      确认
+    </view>
+  </view>
+</view>

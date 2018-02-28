@@ -1,19 +1,218 @@
 <!--pages/main/main.wxml-->
- <!-- <view class="mainUI"  style="background-image: url(/pages/Resources/bg.png);">  -->
- <view class="mainUI"> 
-  <view class='tips'>
-    <text>以下将展示小程序互动音视频能力，由腾讯云提供技术支持</text>
+<view class="page">
+  <view class="userinfo">
+    <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}"></image>
+    <view class="userinfo-nickName">{{userInfo.nickName}}</view>
   </view>
-  <view class='guide-box'>
-    <view wx:for="{{entryInfos}}" wx:key="*this" id="{{index}}" class='guide' bindtap='onEntryTap'>
-      <block>
-        <image class="guide_icon" src="{{item.icon}}" mode="aspectFit" />
-        <view class="guide_label">{{item.title}}</view>
-      </block>
+
+    <view class="weui-cells__title">选择玩家</view>
+    <view class="weui-cells weui-cells_after-title">
+      <view class="weui-cell weui-cell_select">
+        <view class="weui-cell__bd">
+          <picker bindchange="playerChange" value="{{player}}" range="{{players}}">
+            <view class="weui-select special">{{players[player]}}</view>
+          </picker>
+        </view>
+      </view>
     </view>
-    <view class='guide-nomore'></view>
-  </view>
-  <view class='logo-box'>
-    <image class='logo' src='../Resources/logo.png'></image>
-  </view>
+
+    <view style="width: 100%; height: 70px" wx:if="{{false}}">
+      <view class="top" bindtap="goPage('Personal')">
+        <view class="top-left">
+          <view class="top-left-child-1">
+            <image :src="SystemUser.UserInfo.headimageurl"></image>
+          </view>
+          <view class="top-left-child-2">
+            <text>{{SystemUser.UserInfo.nickname}}</text>
+          </view>
+        </view>
+        <view class="top-right">
+          <view class="top-right-child-1">
+            <view class="top-right-child-1-child">
+              <view class="top-right-child-1-child-child-1">
+                <text>积分</text>
+                <text>{{score}}</text>
+              </view>
+              <view class="top-right-child-1-child-child-2">
+                <text>胜率</text>
+                <text>{{allWinRate}}</text>
+              </view>
+            </view>
+          </view>
+          <view class="top-right-child-2">
+            <i class="fa fa-cog" aria-hidden="true"></i>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <view class="start-game-button" bindtap="continueGame" wx:if="{{game}}">
+      <view class="button-color-0 start-game-button-child-1">
+        <view>
+          <image src="../assets/继续游戏.png"></image>
+        </view>
+        <view>
+          继续游戏
+        </view>
+      </view>
+      <view class="start-game-button-child-2">
+        <view>
+          <text>继续之前未完成的游戏</text>
+        </view>
+        <view>
+          <text></text>
+        </view>
+      </view>
+    </view>
+
+    <view class="start-game-button" wx:if="{{!game}}" v-on:cswiper-itemck="showJoinActionSheet">
+      <view class="button-color-1 start-game-button-child-1">
+        <view>
+          <image src="../assets/快速开始.png"></image>
+        </view>
+        <view>
+          快速开始
+        </view>
+      </view>
+      <view class="start-game-button-child-2">
+        <view>
+          <text>匹配玩家开始游戏</text>
+        </view>
+        <view>
+          <text></text>
+        </view>
+      </view>
+    </view>
+    <view class="start-game-button" wx:if="{{true}}" bindtap="goCreate">
+      <view class="button-color-2 start-game-button-child-1">
+        <view>
+          <image src="../assets/创建房间.png"></image>
+        </view>
+        <view>
+          创建房间
+        </view>
+      </view>
+      <view class="start-game-button-child-2">
+        <view>
+          <text>阿瓦隆·刺秦·抵抗组织</text>
+        </view>
+        <view>
+          <text></text>
+        </view>
+      </view>
+    </view>
+    <view class="start-game-button" wx:if="{{!game}}" v-show="!game || game.GameInfo.Finished" v-on:cswiper-itemck="showJoinRoom">
+      <view class="button-color-3 start-game-button-child-1">
+        <view>
+          <image src="../assets/加入房间.png"></image>
+        </view>
+        <view>
+          加入房间
+        </view>
+      </view>
+      <view class="start-game-button-child-2">
+        <view>
+          <text>通过房间号加入游戏</text>
+        </view>
+        <view>
+          <text></text>
+        </view>
+      </view>
+    </view>
+
+    <view class="message-item message-item-first" bindtap="goFollow">
+      <view>
+        <image src="../assets/关注用户.png"></image>
+      </view>
+      <view>
+        关注
+      </view>
+      <view>
+        <text></text>
+      </view>
+    </view>
+    <view class="message-item" bindtap="goLadder">
+      <view>
+        <image src="../assets/排行榜.png"></image>
+      </view>
+      <view>
+        排行榜
+      </view>
+      <view>
+        <text></text>
+      </view>
+    </view>
+    <view class="message-item" bindtap="goRooms">
+      <view>
+        <image src="../assets/房间列表.png"></image>
+      </view>
+      <view>
+        房间列表
+      </view>
+      <view>
+        <text></text>
+      </view>
+    </view>
+    <view class="message-item" bindtap="sayNot">
+      <view>
+        <image src="../assets/视频.png"></image>
+      </view>
+      <view>
+        游戏视频
+      </view>
+      <view>
+        <text></text>
+      </view>
+    </view>
+    <view class="message-item message-item-last" bindtap="sayNot">
+      <view>
+        <image src="../assets/游戏规则.png"></image>
+      </view>
+      <view>
+        规则讲解
+      </view>
+      <view>
+        <text></text>
+      </view>
+    </view>
+
+    <!-- <view>
+      <view class="weui-mask" id="iosMask" style="display: none"></view>
+      <view class="weui-actionsheet" id="joinGameActionSheet">
+        <view class="weui-actionsheet__menu">
+          <view class="weui-actionsheet__cell" v-on:cswiper-itemck="join(2)">阿瓦隆</view>
+          <view class="weui-actionsheet__cell" v-on:cswiper-itemck="join(3)">刺秦</view>
+          <view class="weui-actionsheet__cell" v-on:cswiper-itemck="join(1)">抵抗组织</view>
+          <view class="weui-actionsheet__cell" v-on:cswiper-itemck="join(0)">随机</view>
+        </view>
+        <view class="weui-actionsheet__action">
+          <view class="weui-actionsheet__cell" id="iosActionsheetCancel" v-on:cswiper-itemck="hideJoinActionSheet">取消</view>
+        </view>
+      </view>
+    </view> -->
+
+    <!-- 通过房间号加入房间，弹出框 -->
+    <!-- <view class="js_dialog" id="iosDialog3" v-if="isShowJoinRoom">
+      <view class="weui-mask"></view>
+      <view class="weui-dialog">
+        <view class="weui-dialog__hd">
+          <strong class="weui-dialog__title">加入房间</strong>
+        </view>
+        <view class="weui-dialog__bd">
+          <view class="weui-cells">
+            <view class="weui-cell">
+              <view class="weui-cell__bd">
+                <input class="weui-input" type="number" pattern="[0-9]*" placeholder="请输入房间号" v-model="roomToJoin" />
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view> -->
+
+    <!-- 底部公司信息 -->
+    <view class="weui-footer">
+      <text class="weui-footer__text">Copyright © 2016-2017 Gameofswiper-itemes</text>
+    </view>
 </view>
+

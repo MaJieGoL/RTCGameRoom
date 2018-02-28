@@ -1,0 +1,99 @@
+.list-container-child-2 {
+  width: 100%;
+}
+
+.list-container-child-2:after {
+  content: '.';
+  height: 0;
+  display: block;
+  visibility: hidden;
+  clear: both;
+}
+
+.list-container-child-child {
+  width: 25%;
+  height: 70px;
+  float: left;
+  position: relative;
+  list-style: none;
+}
+
+.list-container-child-child-child-child-1 {
+  width: 40px;
+  height: 40px;
+  margin-top: -20px;
+  margin-left: -20px;
+  position: absolute;
+  background-color: #000;
+  top: 50%;
+  left: 50%;
+  border-radius: 3px;
+  z-index: 1000;
+  background: rgba(0, 0, 0, 0.6);
+}
+
+.list-container-child-child-child-child-2 {
+  width: 17px;
+  height: 17px;
+  z-index: 5000;
+  position: absolute;
+  right: 48%;
+  top: 90%;
+  margin-top: -25px;
+  margin-right: -25px;
+  background-image: url(http://www.moepan.net/uploads/2018013015025872680571.png);
+  background-size: 170px 17px;
+}
+
+.list-container-child-child view image {
+  width: 40px;
+  height: 40px;
+  border-radius: 3px;
+  margin-top: -20px;
+  margin-left: -20px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+}
+
+.choosed {
+  background-image: url(../assets/玩家号码png当前.png) !important;
+}
+
+.list-container {
+  width: 80%;
+  position: fixed;
+  z-index: 5000;
+  top: 180px;
+  margin-left: -40%;
+  left: 50%;
+  background-color: #fff;
+}
+
+.list-container-child-1 {
+  width: 100%;
+  height: 30px;
+  height: 35px;
+  line-height: 35px;
+  text-align: center;
+  border-bottom: 1px solid #ededed;
+}
+
+.list-container-child-3 {
+  width: 100%;
+  height: 40px;
+  font-size: 20px;
+  text-align: center;
+  line-height: 40px;
+  border-bottom: 1px solid #ededed;
+}
+
+.weui-mask {
+  position: fixed;
+  z-index: 1000;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  background: rgba(0,0,0,.6);
+}

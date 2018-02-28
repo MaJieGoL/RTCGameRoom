@@ -1,0 +1,80 @@
+<!--create.wxml-->
+<view>
+  <view class="title">创建房间</view>
+
+  <view class="weui-cells__title">游戏类型</view>
+  <view class="weui-cells weui-cells_after-title">
+    <view class="weui-cell weui-cell_select">
+      <view class="weui-cell__bd">
+        <picker bindchange="gameTypeChanged" value="{{accountIndex}}" range="{{accounts}}">
+          <view class="weui-select special">{{accounts[accountIndex]}}</view>
+        </picker>
+      </view>
+    </view>
+  </view>
+
+  <view class="weui-cells weui-cells_after-title margin-form">
+    <view class="weui-cell weui-cell_switch">
+        <view class="weui-cell__bd">公开游戏</view>
+        <view class="weui-cell__ft">
+            <switch bindchange="publicChanged" checked />
+        </view>
+    </view>
+    <view class="weui-cell weui-cell_switch">
+        <view class="weui-cell__bd">显示组队投票详情（明票）</view>
+        <view class="weui-cell__ft">
+            <switch bindchange="showVoteChange" checked />
+        </view>
+    </view>
+    <view class="weui-cell weui-cell_input">
+        <view class="weui-cell__hd">
+            <view class="weui-label">人数</view>
+        </view>
+        <view class="weui-cell__bd">
+            <input class="weui-input" bindinput="playerCountChange" value="{{game.PlayerCountLimit}}" placeholder="请输入人数"/>
+        </view>
+    </view>
+    <view class="weui-cell weui-cell_input">
+        <view class="weui-cell__hd">
+            <view class="weui-label">发言时间</view>
+        </view>
+        <view class="weui-cell__bd">
+            <input class="weui-input" bindinput="chatTimeChange" value="{{game.ChatTimeLimit}}" placeholder="请输入秒数"/>
+        </view>
+    </view>
+    <view class="weui-cell weui-cell_input">
+        <view class="weui-cell__hd">
+            <view class="weui-label">否决次数</view>
+        </view>
+        <view class="weui-cell__bd">
+            <input class="weui-input" bindinput="makeGroupChange" value="{{game.MakeGroupRoundLimit}}" placeholder="请输入否决次数"/>
+        </view>
+    </view>
+    <view class="weui-cell weui-cell_switch">
+        <view class="weui-cell__bd">全局否决计数</view>
+        <view class="weui-cell__ft">
+            <switch bindchange="globalChange" checked />
+        </view>
+    </view>
+  </view>
+
+  <!-- <view class="weui-cells weui-cells_after-title margin-form">
+    <view class="weui-cell weui-cell_switch">
+        <view class="weui-cell__bd">开启谋略卡</view>
+        <view class="weui-cell__ft">
+            <switch checked />
+        </view>
+    </view>
+  </view> -->
+
+  <view class="weui-cells weui-cells_after-title margin-form">
+    <view class="weui-cell weui-cell_switch">
+        <view class="weui-cell__bd">线下模式</view>
+        <view class="weui-cell__ft">
+            <switch />
+        </view>
+    </view>
+  </view>
+
+  <button class="weui-btn start-btn" type="primary" bindtap="create">开始游戏</button>
+</view>

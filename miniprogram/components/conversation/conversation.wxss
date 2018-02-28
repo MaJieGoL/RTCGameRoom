@@ -1,0 +1,877 @@
+.chat {
+  width: 100%;
+  position: fixed;
+  bottom: 45px;
+  top: 95px;
+  display: block;
+  background-color: #EFEFF4;
+  overflow: scroll;
+  -webkit-overflow-scrolling: touch;
+}
+
+.goodPeople {
+  color: #0079FF !important;
+}
+
+.self-chat {
+  display: inline-block;
+  position: relative;
+  float: right;
+}
+
+.self-chat view:after {
+  position: absolute;
+  top: 14px;
+  border: 6px solid transparent;
+  content: " ";
+  border-left-color: #b2e281;
+  border-left-width: 4px;
+  right: 0;
+}
+
+.self-chat view text {
+  padding: 9px 12px;
+  border-radius: 3px;
+  word-wrap: break-word;
+  word-break: break-all;
+  min-height: 25px;
+  font-size: 14px;
+  margin: 0 10px;
+  vertical-align: top;
+  display: block;
+  font-family: inherit;
+  white-space: pre-wrap;
+  word-break: normal;
+  display: block;
+  max-width: 500px;
+  min-height: 1em;
+  display: inline-block;
+  vertical-align: top;
+  position: relative;
+  text-align: left;
+  float: right;
+  background-color: #b2e281;
+  max-width: 280px;
+}
+
+.other-chat {
+  display: inline-block;
+  position: relative;
+}
+
+.other-chat view:before {
+  position: absolute;
+  top: 14px;
+  border: 6px solid transparent;
+  content: " ";
+  border-left-width: 4px;
+  border-right-color: #fff;
+}
+
+.chat-view-child-1 {
+  font-size:9px;
+  padding-left:11px;
+}
+
+.other-chat text {
+  padding: 9px 12px;
+  border-radius: 3px;
+  word-wrap: break-word;
+  word-break: break-all;
+  min-height: 25px;
+  font-size: 14px;
+  margin: 0 10px;
+  vertical-align: top;
+  display: block;
+  font-family: inherit;
+  white-space: pre-wrap;
+  word-break: normal;
+  display: block;
+  max-width: 500px;
+  min-height: 1em;
+  background-color: #fff;
+  display: inline-block;
+  vertical-align: top;
+  position: relative;
+  text-align: left;
+  max-width: 280px;
+}
+
+.self-img .avatar{
+  float: right;
+}
+
+.self-img .avatar .identification {
+  left: 0;
+}
+
+.other-img .avatar{
+  float: left;
+}
+
+.other-img .avatar .identification {
+  right: 0;
+}
+
+.person image {
+  width: 35px;
+  height: 35px;
+  float: left;
+  border-radius: 5px;
+}
+
+.avatar {
+  position: relative;
+  width: 35px;
+  height: 35px;
+  border-radius: 5px;
+}
+
+.avatar image {
+  width:35px;
+  height:35px;
+  border-radius:5px;
+}
+
+.avatar view {
+  position: absolute;
+  width: 17px;
+  height: 17px;
+  right: 0;
+  bottom: 0;
+  margin-top: -5px;
+  margin-right: -5px;
+  background-image: url(http://www.moepan.net/uploads/2018013015025872680571.png);
+  background-size: 170px 17px;
+}
+
+.other {
+  margin-left: 5px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.other:after {
+  content: " ";
+  display: block;
+  height: 0;
+  visibility: hidden;
+  clear: both;
+}
+
+.self {
+  margin-right: 5px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.self:after {
+  content: " ";
+  display: block;
+  height: 0;
+  visibility: hidden;
+  clear: both;
+}
+
+.role {
+  width: 320px;
+  background-color: #fff;
+  border-radius: 5px;
+  margin: auto;
+  margin-top: 10px !important;
+  margin-bottom: 10px;
+}
+
+.role-child-1 {
+  width: 280px;
+  height: 30px;
+  line-height: 34px;
+  font-size: 18px;
+  color: #19AD19;
+  margin: auto;
+}
+
+.role-child-2:after {
+  content: '.';
+  display: block;
+  clear: both;
+  height: 0;
+  visibility: hidden;
+}
+
+.role-child-child-1 {
+  width: 60%;
+  float: left;
+}
+
+.role-child-child-1-text-2 {
+  font-size: 13px;
+  line-height: 80%;
+}
+
+.role-child-child-1-text-1 {
+  font-size: 13px;
+}
+
+.role-child-child-1-text-1 text {
+  color: #FF0F1B;
+}
+
+.role-child-2 {
+  width: 280px;
+  margin: auto;
+  border-top: 1px solid #D8D8D8;
+}
+
+.role-child-2-child-2 {
+  width: 40%;
+  min-height: 145px;
+  float: left;
+  position: relative;
+}
+
+.roleImg-child-1 image {
+  width: 80px;
+  height: 110px;
+  position: absolute;
+  right: 50%;
+  margin-right: -40px;
+  bottom: 100%;
+  margin-bottom: -115px;
+}
+
+.roleImg-child-2 image {
+  height: 20px;
+  margin: auto;
+  display: block;
+  margin-top: 120px;
+  width: 60px;
+}
+
+.system-message {
+  margin-top: 3px;
+}
+
+.system-message view {
+  width: 100%;
+  text-align: center;
+}
+
+.system-message view text {
+  padding: 1px 3px;
+  padding: 1px 20px;
+  background-color: #D6D6DB;
+  border-radius: 3px;
+  color: #fff;
+  font-size: 13px;
+  margin: auto;
+  font-weight: 800;
+}
+
+.important {
+  margin-top: 3px;
+}
+
+.important view {
+  width: 100%;
+  text-align: center;
+}
+
+.important view text {
+  padding: 1px 3px;
+  padding: 1px 20px;
+  background-color: #C9C9C9;
+  border-radius: 3px;
+  color: #fff;
+  font-size: 13px;
+  margin: auto;
+  font-weight: 800;
+}
+
+.group-vote-message {
+  float: left;
+  width: 100%;
+}
+
+.group-vote-message:after {
+  content: '.';
+  display: block;
+  visibility: hidden;
+  height: 0;
+  clear: both;
+}
+
+.group-vote-message-child-2 {
+  color: #007AFF;
+}
+
+.vote-result-child {
+  display: flex;
+  margin-top: -5px;
+}
+
+.vote-result-child-child {
+  flex: 1;
+  list-style: none;
+  text-align: center;
+  height: 23px;
+}
+
+.playerlist-container-ul-li-child-2 image {
+  width: 16px;
+  height: 16px;
+  position: absolute;
+  -webkit-transform: rotate(-37deg);
+  transform: rotate(-37deg);
+  top: 50%;
+  left: 50%;
+  margin-left: -30px;
+  margin-top: -30px;
+}
+
+.playerlist-container-ul {
+  margin-top: 5px;
+  display: flex;
+}
+
+.playerlist-container-ul-li-child-1 {
+  width: 35px;
+  height: 35px;
+  margin-top: -17.5px;
+  margin-left: -17.5px;
+  position: absolute;
+  background-color: #000;
+  top: 50%;
+  left: 50%;
+  border-radius: 3px;
+  z-index: 1000;
+  background: rgba(171, 171, 171, 0.6);
+}
+
+.playerlist-container-ul-li-child-3 {
+  width: 17px;
+  height: 17px;
+  position: absolute;
+  right: 50%;
+  top: 50%;
+  margin-top: 3px;
+  margin-right: -20px;
+  z-index: 5000;
+  background-image: url(http://www.moepan.net/uploads/2018013015025872680571.png);
+  background-size: 170px 17px;
+}
+
+.playerlist-container-ul-li-child-4 {
+  width: 35px;
+  height: 35px;
+  border-radius: 5px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-left: -17.5px;
+  margin-top: -17.5px;
+}
+
+.playerlist-container-ul-li {
+  flex: 1;
+  height: 40px;
+  margin-top: 5px;
+  list-style: none;
+  float: left;
+  display: block;
+  position: relative;
+}
+
+.inGroup {
+  width: 35px;
+  height: 35px;
+  border-radius: 5px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  border: 2px solid #19AD19;
+  margin-left: -20.5px;
+  margin-top: -20.5px;
+  display: block;
+  padding: 1px;
+}
+
+.playerlist-container {
+  width: 100%;
+  height: 50px;
+}
+
+.makeGroupVote {
+  display: flex;
+  width: 100%;
+}
+
+.makeGroupVote-child-child {
+  width: 170px;
+  border-radius: 5px;
+  margin: auto;
+  height: 36px;
+  position: relative;
+}
+
+.makeGroupVote-child-child image {
+  position: absolute;
+  left: 46px;
+  top: 3px;
+}
+
+.makeGroupVote-child-child text {
+  position: absolute;
+  left: 78px;
+  line-height: 36px;
+}
+
+.makeGroupVote-child {
+  flex: 1;
+}
+
+.makeGroupVote-child-1 view {
+  border: 1px solid #19AD19;
+  color: #19AD19;
+}
+
+.makeGroupVote-child-2 view {
+  border: 1px solid #5856D6;
+  color: #5856D6;
+}
+
+.makeGroupVote-child-child image {
+  width: 30px;
+  height: 30px;
+}
+
+.mission-vote {
+  margin-top: 10px;
+}
+
+.mission-vote-ul {
+  display: flex;
+}
+
+.mission-vote-ul-li {
+  flex: 1;
+  list-style: none;
+}
+
+.mission-vote-ul-li-child {
+  width: 40px;
+  height: 40px;
+  margin: auto;
+  display: block;
+  border-radius: 5px;
+  position: relative;
+}
+
+.mission-vote-ul-li-child image {
+  width: 40px;
+  height: 40px;
+  border-radius: 5px;
+}
+
+.mission-vote-ul-li-child-div {
+  width: 17px;
+  height: 17px;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  background-image: url(http://www.moepan.net/uploads/2018013015025872680571.png);
+  background-size: 170px 17px;
+  margin-top: -5px;
+  margin-right: -5px;
+}
+
+.mission-vote-child-2 {
+  display: flex;
+  margin-top: 10px;
+  width: 100%;
+}
+
+.mission-vote-child-2-child {
+  flex: 1;
+}
+
+.mission-vote-child-2-child-child {
+  width: 170px;
+  margin: auto;
+  display: block;
+  text-align: center;
+  height: 36px;
+  line-height: 36px;
+  border-radius: 3px;
+  position: relative;
+}
+
+.mission-vote-child-2-child-child image {
+  width: 30px;
+  height: 30px;
+  position: absolute;
+  top: 3px;
+  left: 35px;
+}
+
+.mission-vote-child-2-child-child text {
+  position: absolute;
+  left: 70px;
+}
+
+.mission-vote-child-2-child-child-color-1 {
+  color: #007AFF;
+  border: 1px solid #007AFF;
+}
+
+.mission-vote-child-2-child-child-color-2 {
+  color: #FF3B30;
+  border: 1px solid #FF3B30;
+}
+
+.mission-vote-result {
+  width: 100%;
+  height: 45px;
+}
+
+.mission-vote-result-ul {
+  width: 55%;
+  height: 45px;
+  display: flex;
+  list-style: none;
+  float: left;
+}
+
+.mission-vote-result-ul-li {
+  flex: 1;
+  height: 45px;
+  position: relative;
+}
+
+.mission-vote-result-ul-li-image {
+  width: 35px;
+  height: 35px;
+  border-radius: 5px;
+  position: absolute;
+  margin-top: -17.5px;
+  margin-left: -17.5px;
+  top: 50%;
+  left: 50%;
+}
+
+.mission-vote-result-ul-li-div {
+  width: 17px;
+  height: 17px;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  margin-left: 6px;
+  background-size: 170px 17px;
+  z-index: 1;
+  background-image: url(http://www.moepan.net/uploads/2018013015025872680571.png);
+}
+
+.mission-vote-result-child-2 {
+  width: 20%;
+  height: 45px;
+  float: left;
+  display: flex;
+}
+
+.mission-vote-result-child-2-child {
+  flex: 1;
+}
+
+.mission-vote-result-child-2-child-image {
+  width: 34px;
+  height: 34px;
+  margin: auto;
+  display: block;
+}
+
+.mission-vote-result-child-2-child-text {
+  font-size: 12px;
+  width: 11px;
+  height: 11px;
+  display: block;
+  text-align: center;
+  line-height: 11px;
+  margin: auto;
+  color: #19AD19;
+}
+
+.mission-vote-result-child-3 {
+  width: 25%;
+  height: 45px;
+  float: left;
+  position: relative;
+}
+
+.mission-vote-result-child-3-image {
+  width: 97px;
+  height: 73px;
+  margin-left: -50px;
+  margin-top: -36.5px;
+  top: 50%;
+  left: 50%;
+  position: absolute;
+}
+
+.gamerule {
+  width: 80%;
+  margin: auto;
+  background: #fff;
+  border-radius: 5px;
+  margin-top: 10px;
+}
+
+.gamerule-child {
+  padding: 10px;
+  font-size: 15px;
+}
+
+.gamerule-child-child-1 {
+  color: #19AD19;
+  border-bottom: 1px solid #D8D8D8;
+  font-size: 18px;
+}
+
+.gamerule-child-child-2-child-1 {
+  margin-top: 5px;
+}
+
+.gamerule-child-child-2-child-1-text-4 {
+  margin-left: 15px;
+}
+
+.gamerule-child-child-2-child-1-text-5 {
+  margin-left: 15px;
+}
+
+.gamerule-child-child-2-child-1-text-6 {
+  margin-left: 15px;
+}
+
+.gamerule-child-child-2-child-2 {
+  margin-top: 10px;
+}
+
+.gamerule-child-child-2-child-3 {
+  margin-top: 10px;
+}
+
+.gamerule-child-child-2-child-4 {
+  margin-top: 10px;
+}
+
+.gamerule-child-child-2-child-5 {
+  margin-top: 10px;
+}
+
+.mvp-vote {
+  margin-top: 15px;
+}
+
+.mvp-vote-ul {
+  list-style: none;
+  width: 100%;
+  height: 40px;
+  display: flex;
+}
+
+.mvp-vote-ul-li {
+  flex: 1;
+  position: relative;
+}
+
+.mvp-vote-ul-li-child {
+  width: 35px;
+  height: 35px;
+  position: absolute;
+  margin-top: -17.5px;
+  margin-left: -17.5px;
+  top: 50%;
+  left: 50%;
+}
+
+.mvp-vote-ul-li-child image {
+  width: 35px;
+  height: 35px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-radius: 5px;
+}
+
+.mvp-vote-ul-li-child view {
+  width: 17px;
+  height: 17px;
+  position: absolute;
+  right: 0;
+  bottom: -3px;
+  z-index: 1;
+  margin-right: -3px;
+  background-image: url(http://www.moepan.net/uploads/2018013015025872680571.png);
+  background-size: 170px 17px;
+}
+
+.active-mvp view {
+  background-image: url(http://www.moepan.net/uploads/2018013015025872680571.png);
+}
+
+.active-mvp image {
+  padding: 1px;
+  border: 2px solid #19AD19;
+  border-radius: 5px;
+  top: -3px;
+  left: -3px;
+}
+
+.mvp-vote-child {
+  width: 170px;
+  height: 33px;
+  border: 1px solid #FF9500;
+  text-align: center;
+  line-height: 33px;
+  color: #FF9500;
+  margin: auto;
+  margin-top: 10px;
+  border-radius: 5px;
+}
+
+.gamelog {
+  width: 320px;
+  margin: auto;
+  background-color: #fff;
+  margin-top: 10px;
+  padding: 10px 0;
+  border-radius: 8px;
+  margin-top: 10px;
+}
+
+.gamelog-child-1 {
+  width: 155px;
+  height: 36px;
+  margin: auto;
+}
+
+.gamelog-child-1 image {
+  width: 155px;
+  height: 36px;
+}
+
+.gamelog-ul-li {
+  display: flex;
+  width: 280px;
+  height: 50px;
+  margin: auto;
+  border-bottom: 1px solid #C9C9C9;
+}
+
+.gamelog-ul-li:last-child {
+  border: 0px;
+}
+
+.gamelog-ul-li-child {
+  flex: 1;
+  position: relative;
+}
+
+.gamelog-ul-li-child-1-child-1 {
+  width: 26px;
+  height: 26px;
+  position: absolute;
+  top: 12px;
+}
+
+.gamelog-ul-li-child-1-child-1 image {
+  width: 26px;
+  height: 26px;
+}
+
+.gamelog-ul-li-child-1-text {
+  font-size: 13px;
+  position: absolute;
+  top: 5px;
+  left: 40px;
+}
+
+.gamelog-ul-li-child-1-child-3 {
+  width: 16px;
+  height: 20px;
+  position: absolute;
+  top: 5px;
+  left: 100px;
+  background-image: url(http://www.moepan.net/uploads/201802510065837298748.png); /* 奖牌 */
+  background-size: 16px;
+}
+
+.gamelog-ul-li-child-2-child-1 {
+  width: 17px;
+  height: 15px;
+  background-image: url(http://www.moepan.net/uploads/201802510052981864397.png); /* 积分 */
+  background-size: 17px 15px;
+  position: absolute;
+  bottom: 5px;
+  left: -5px;
+}
+
+.gamelog-ul-li-child-2-text {
+  font-size: 13px;
+  display: block;
+  position: absolute;
+  bottom: 2px;
+  left: 15px;
+}
+
+.gamelog-ul-li-child-2-child-3 {
+  width: 47px;
+  height: 15px;
+  position: absolute;
+  bottom: 5px;
+  right: 50px;
+  background-position: top;
+}
+
+.gamelog-ul-li-child-2-child-3 image {
+  height: 15px;
+  width: 38px;
+  display: block;
+}
+
+.gamelog-ul-li-child-2-child-4 {
+  width: 50px;
+  height: 50px;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.gamelog-ul-li-child-2-child-4 image {
+  width: 38px;
+  height: 45px;
+}
+
+.outgame {
+  width: 200px;
+  height: 30px;
+  margin: auto;
+  line-height: 30px;
+  margin-top: 10px !important;
+  text-align: center;
+  border-radius: 5px;
+  border: 1px solid #000;
+}
+
+.other-chat .OBSaymsg:before {
+  border-right-color: #35AADD !important;
+}
+
+.self-chat .OBSaymsg:after {
+  border-left-color: #35AADD !important;
+}
+
+.OBSaymsg text {
+  background-color: #35AADD !important;
+  color: #fff;
+}

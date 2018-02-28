@@ -1,0 +1,88 @@
+<view>
+  <view class="title">
+    房间列表
+  </view>
+  <view class="ifstart-view">
+    <switch class="ifStart" bindchange="startChange"/>
+  </view>
+  <view class="page__bd">
+    <view class="weui-tab">
+      <view class="weui-navbar">
+        <block wx:for="{{tabs}}" wx:key="*this">
+          <view id="{{index}}" class="weui-navbar__item {{activeIndex == index ? 'weui-bar__item_on' : ''}}" bindtap="tabClick">
+            <view class="weui-navbar__title">{{item}}</view>
+          </view>
+        </block>
+        <view class="weui-navbar__slider" style="left: {{sliderLeft}}px; transform: translateX({{sliderOffset}}px); -webkit-transform: translateX({{sliderOffset}}px);"></view>
+      </view>
+      <view class="weui-tab__panel">
+        <view class="weui-tab__content" hidden="{{activeIndex != 0}}">
+          <view class="room" wx:for="{{rooms}}" wx:key="{{Id}}" data-id="{{item.Id}}" bindtap="joinRoom" wx:if="{{(item.GameType === gameType) && (item.status === gameStatus)}}">
+            <image src="{{item.CreateUser.UserInfo.headimgurl}}" />
+            <view class="room-child-2">
+              {{item.CreateUser.UserInfo.nickname}}
+            </view>
+            <view class="room-child-3">
+              {{item.Id}}房间
+            </view>
+            <view class="wait-room">
+              <view wx:if="{{!item.GameInfo.Started}}" class="wait-room-child-1">
+                {{item.PlayerList.length}}/{{item.PlayerCountLimit}}人
+              </view>
+              <view wx:if="{{item.GameInfo.Started}}" class="wait-room-child-2">
+                {{item.time}}
+              </view>
+              <view class="wait-room-child-3">
+                {{item.PlayerCountLimit}}人 | {{item.MakeGroupRoundLimit}}轮 | 可观战
+              </view>
+            </view>
+          </view>
+        </view>
+        <view class="weui-tab__content" hidden="{{activeIndex != 1}}">
+          <view class="room" wx:for="{{rooms}}" wx:key="{{Id}}" data-id="{{item.Id}}" bindtap="joinRoom" wx:if="{{(item.GameType === gameType) && (item.status === gameStatus)}}">
+            <image src="{{item.CreateUser.UserInfo.headimgurl}}" />
+            <view class="room-child-2">
+              {{item.CreateUser.UserInfo.nickname}}
+            </view>
+            <view class="room-child-3">
+              {{item.Id}}房间
+            </view>
+            <view class="wait-room">
+              <view wx:if="{{!item.GameInfo.Started}}" class="wait-room-child-1">
+                {{item.PlayerList.length}}/{{item.PlayerCountLimit}}人
+              </view>
+              <view wx:if="{{item.GameInfo.Started}}" class="wait-room-child-2">
+                {{item.time}}
+              </view>
+              <view class="wait-room-child-3">
+                {{item.PlayerCountLimit}}人 | {{item.MakeGroupRoundLimit}}轮 | 可观战
+              </view>
+            </view>
+          </view>
+        </view>
+        <view class="weui-tab__content" hidden="{{activeIndex != 2}}">
+          <view class="room" wx:for="{{rooms}}" wx:key="{{Id}}" data-id="{{item.Id}}" bindtap="joinRoom" wx:if="{{(item.GameType === gameType) && (item.status === gameStatus)}}">
+            <image src="{{item.CreateUser.UserInfo.headimgurl}}" />
+            <view class="room-child-2">
+              {{item.CreateUser.UserInfo.nickname}}
+            </view>
+            <view class="room-child-3">
+              {{item.Id}}房间
+            </view>
+            <view class="wait-room">
+              <view wx:if="{{!item.GameInfo.Started}}" class="wait-room-child-1">
+                {{item.PlayerList.length}}/{{item.PlayerCountLimit}}人
+              </view>
+              <view wx:if="{{item.GameInfo.Started}}" class="wait-room-child-2">
+                {{item.time}}
+              </view>
+              <view class="wait-room-child-3">
+                {{item.PlayerCountLimit}}人 | {{item.MakeGroupRoundLimit}}轮 | 可观战
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

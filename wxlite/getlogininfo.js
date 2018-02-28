@@ -16,7 +16,7 @@ function getLoginInfo(options) {
         wx.getUserInfo({
           withCredentials: false,
           success: function (ret) {
-            options.userName = ret.userInfo.nickName;
+            options.userInfo = ret.userInfo;
             proto_getLoginInfo(options);
           },
           fail: function() {
@@ -65,7 +65,7 @@ function proto_getLoginInfo(options) {
       }
       console.log('获取IM登录信息成功: ', ret.data);
       ret.data.serverDomain = config.url + '/weapp/' + options.type + '/';
-      ret.data.userName = options.userName;
+      ret.data.userName = options.userInfo.nickName;
       // rtcroom初始化
       rtcroom.init({
         data: ret.data,

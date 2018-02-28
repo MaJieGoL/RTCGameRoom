@@ -1,0 +1,37 @@
+<view>
+  <view wx:if="{{Display.ifShowKillMerlin}}">
+    <view class="weui-mask"></view>
+    <view class="list-container">
+      <view class="list-container-child-1">请杀死一名你认为是梅林的玩家</view>
+      <view class="list-container-child-2 list-ul">
+        <view wx:for="{{tmpPlayerList}}" wx:key="{{item.Identification}}" class="list-li">
+          <view bindtap="selectPlayerToKillMerlin" data-Identification="{{item.Identification}}">
+            <view class="list-li-child-child" wx:if="{{!(playerIdToKillMerlin === item.Identification)}}"></view>
+            <image src="{{item.WeixinUserInfo.headimgurl}}"></image>
+          </view>
+        </view>
+      </view>
+      <view class="list-container-child-3" bindtap="killMerlin">
+        确认
+      </view>
+    </view>
+  </view>
+
+  <view wx:if="{{Display.ifShowKillQinwang}}">
+    <view class="weui-mask"></view>
+    <view class="list-container">
+      <view>请杀死一名你认为是秦王的玩家</view>
+      <view class="list-ul">
+        <view wx:for="{{tmpPlayerList}}" wx:key="{{item.Identification}}" class="list-li">
+          <view bindtap="selectPlayerToKillQinwang" data-Identification="{{item.Identification}}">
+            <view class="list-li-child-child" wx:if="{{!(playerIdToKillQinwang === item.Identification)}}"></view>
+            <image src="{{item.WeixinUserInfo.headimgurl}}"></image>
+          </view>
+        </view>
+      </view>
+      <view bindtap="killMerlin">
+        确认
+      </view>
+    </view>
+  </view>
+</view>

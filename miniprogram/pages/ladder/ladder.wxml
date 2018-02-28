@@ -1,0 +1,17 @@
+<view>
+  <view class="title">排行榜</view>
+  <view class="gamer-list-container">
+    <view>
+      <view class="gamer-list-comtainer-li" wx:for="{{msgs}}" bindtap="seeLeader" data-openid="{{item.openid}}" wx:key="{{item.openid}}">
+        <text class="gamer-num">{{index + 1}}</text>
+        <view class="gamer-pic">
+          <image src="{{item.headimgurl}}"></image>
+        </view>
+        <view class="gamer-msg">
+          <text>{{item.nickname}}</text>
+          <text>{{item.order}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

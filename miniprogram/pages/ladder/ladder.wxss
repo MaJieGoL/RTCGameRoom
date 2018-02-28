@@ -1,0 +1,68 @@
+/*.container {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: #EFEFF4;
+}*/
+
+.title {
+  font-size: 21px;
+  width: 100%;
+  height: 30px;
+  line-height: 30px;
+  text-align: center;
+  color: #666;
+  margin-top: 15px;
+}
+
+.gamer-list-container {
+  margin-top: 35px;
+}
+
+.gamer-list-comtainer-li {
+  width: 100%;
+  height: 66px;
+  position: relative;
+  border-top: 1px solid #c7c7c7;
+  background-color: #fff;
+  font-size: 15px;
+}
+
+.gamer-list-comtainer-li:last-child {
+  border-bottom: 1px solid #c7c7c7;
+}
+
+.gamer-num {
+  position: absolute;
+  width: 30px;
+  height: 20px;
+  text-align: center;
+  top: 23px;
+  left: 8px;
+  z-index: 1000;
+}
+
+.gamer-pic {
+  width: 50px;
+  height: 50px;
+  background-color: #666;
+  position: absolute;
+  top: 8px;
+  left: 47px;
+  border-radius: 9px;
+}
+
+.gamer-pic image {
+  width: 50px;
+  height: 50px;
+  border-radius: 9px;
+  display: block;
+}
+
+.gamer-msg {
+  position: absolute;
+  top: 22px;
+  left: 110px;
+}

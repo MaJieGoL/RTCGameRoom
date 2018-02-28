@@ -1,0 +1,27 @@
+<view class="container">
+  <view class="container-child-1"></view>
+  <view class="title">
+    <view>
+      <text>关注</text>
+    </view>
+  </view>
+  <view class="followList">
+    <view class="followList-li" wx:for="{{followMsg}}" wx:key="{{item.openid}}" bindtap="seeInfo" data-openid="{{item.openid}}">
+      <view class="followList-li-child">
+        <image src="{{item.headimgurl}}"></image>
+        <view class="followList-li-child-child-2">{{item.nickname}}</view>
+        <view class="followList-li-child-child-3">
+          <view class="followList-li-child-child-3-child-1">
+            <text class="changeColor">积分</text>
+            <text>{{item.score}}</text>
+          </view>
+          <view>
+            <text class="changeColor">胜率</text>
+            <text>{{item.allWinRate}}</text>
+          </view>
+        </view>
+        <view></view>
+      </view>
+    </view>
+  </view>
+</view>

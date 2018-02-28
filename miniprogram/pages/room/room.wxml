@@ -1,0 +1,97 @@
+<view>
+  <view class="top">
+    <view class="gameround">
+      <view class="gameround-ul">
+        <view class="gameround-ul-li" wx:for="{{progressBar}}" wx:key="{{index}}">
+          <image wx:if="{{item === 1}}" src="../assets/成功2.png"></image>
+          <image wx:if="{{item === 0}}" src="../assets/失败2.png"></image>
+          <image wx:if="{{(item === 2 && progressBar[index - 1] !== 0 && progressBar[index - 1] !== 1) && index !== 0}}" src="../assets/未到大-2.png"></image>
+          <image wx:if="{{(item === 3 && progressBar[index - 1] !== 0 && progressBar[index - 1] !== 1) && index !== 0}}" src="../assets/未到大-3.png"></image>
+          <image wx:if="{{(item === 4 && progressBar[index - 1] !== 0 && progressBar[index - 1] !== 1) && index !== 0}}" src="../assets/未到大-4.png"></image>
+          <image wx:if="{{(item === 5 && progressBar[index - 1] !== 0 && progressBar[index - 1] !== 1) && index !== 0}}" src="../assets/未到大-5.png"></image>
+          <image wx:if="{{item === 2 && ((progressBar[index - 1] === 0 || progressBar[index - 1] === 1) || ((!game.GameLog.RoundLog || game.GameInfo.Started) && index === 0))}}" src="../assets/当前任务大-2.png"></image>
+          <image wx:if="{{item === 3 && ((progressBar[index - 1] === 0 || progressBar[index - 1] === 1) || ((!game.GameLog.RoundLog || game.GameInfo.Started) && index === 0))}}" src="../assets/当前任务大-3.png"></image>
+          <image wx:if="{{item === 4 && ((progressBar[index - 1] === 0 || progressBar[index - 1] === 1) || ((!game.GameLog.RoundLog || game.GameInfo.Started) && index === 0))}}" src="../assets/当前任务大-4.png"></image>
+          <image wx:if="{{item === 5 && ((progressBar[index - 1] === 0 || progressBar[index - 1] === 1) || ((!game.GameLog.RoundLog || game.GameInfo.Started) && index === 0))}}" src="../assets/当前任务大-5.png"></image>
+          <view class="gameround-ul-li-view-nth-last-child-2" wx:if="{{index < 4 && index < game.GameInfo.CurrentRound}}"></view>
+          <view wx:if="{{index < 4}}"></view>
+        </view>
+      </view>
+    </view>
+    <view bindtap="showMessageImportant" class="header-button">
+      <image wx:if="{{showImportant}}" src="../assets/任务详情开.png"></image>
+      <image wx:if="{{!showImportant}}" src="../assets/任务详情关.png"></image>
+    </view>
+    <view class="line"></view>
+    <view class="player-list">
+      <view class="player-list-ul" style="width:{{(game.PlayerList.length/game.PlayerCountLimit) * 100}}%">
+        <view class="player-list-ul-li" wx:for="{{game.PlayerList}}" wx:for-item="item_1" wx:key="{{item_1.Identification}}">
+          <view class="player-list-ul-li-child">
+            <view class="player-list-ul-li-child-child-1" wx:if="{{item_1.Identification === game.GameInfo.CurrentLeaderId}}">
+              <image src="../assets/队长标记.png"></image>
+            </view>
+            <view class="{{game.GameInfo.CurrentChatPlayerIdentification === item_1.Identification ? 'speaking player-list-ul-li-child-child-2' : 'nspeaking player-list-ul-li-child-child-2'}}" style="background-position: {{(10 - item_1.Identification) * 17}}px"></view>
+            <view class="player-list-ul-li-child-child-3" wx:if="{{item_1.WeixinUserInfo.openid !== game.CreateOpenid && !(readyListObj[item_1.WeixinUserInfo.openid]) && !game.GameInfo.Started}}"></view>
+            <image src="{{item_1.WeixinUserInfo.headimgurl}}" bindtap="showInfo" data-player="{{item_1}}"></image>
+          </view>
+        </view>
+      </view>
+      <view class="player-list-ul" style="width: {{(1 - game.PlayerList.length/game.PlayerCountLimit) * 100}}%">
+        <view class="player-list-ul-li" wx:for="{{game.PlayerCountLimit - game.PlayerList.length}}" wx:for-item="item_2" wx:key="{{index}}">
+          <view class="player-list-ul-li-child">
+            <image class="player-list-ul-2-child-image" src="../assets/等待玩家头像.png"></image>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class="middle">
+    <conversation conversation="{{conversation}}" Display="{{Display}}" game="{{game}}" player="{{player}}" showImportant="{{showImportant}}"></conversation>
+  </view>
+
+  <view class="chatPart">
+    <view class="chatPart-child-1">
+      <view bindtap="showActions" class="chatPart-list">
+        <image src="../assets/行动菜单.png" wx:if="{{!Display.ifShowActions}}"></image>
+        <image src="../assets/行动菜单图标按下.png" wx:if="{{Display.ifShowActions}}"></image>
+        <view class="actions" wx:if="{{Display.ifShowActions}}">
+          <view bindtap="showGameRule">查看规则</view>
+          <view bindtap="startKill" wx:if="{{startKill}}">开始刺杀</view>
+          <view bindtap="startThrow" wx:if="{{startThrow}}">发起认输</view>
+          <!--<view bindtap="showEditGame" wx:if="!Iamob && (user.openid === game.CreateUser.Openid) && !game.GameInfo.Started">编辑游戏</view>-->
+          <view bindtap="playerToOB" wx:if="{{playerToOB}}">进入观战</view>
+          <view bindtap="obOutGame" wx:if="{{obOutGame}}">退出观战</view>
+          <view bindtap="OBJoinGame" wx:if="{{OBJoinGame}}">加入游戏</view>
+          <view bindtap="out" wx:if="{{out_1}}">解散游戏</view>
+          <view bindtap="out" wx:if="{{out_2}}">退出游戏</view>
+          <view bindtap="agreeThrow" wx:if="{{agreeThrow}}">同意</view>
+          <view bindtap="disagreeThrow" wx:if="{{disagreeThrow}}">不同意</view>
+          <!--<view bindtap="closeOBSay" wx:if="!Iamob && Display.ifShowOBSay">关闭OB发言</view>
+          <view bindtap="showOBSay" wx:if="!Iamob && !Display.ifShowOBSay">显示OB发言</view>-->
+        </view>
+      </view>
+    </view>
+    <view class="chatPart-child-2">
+      <textarea class="weui-textarea chatPart-text" id="chatArea" bindinput="updateMessage">{{message}}</textarea>
+    </view>
+    <view class="chatPart-child-3">
+      <view class="chatPart-ready">
+        <image src="../assets/结束回合.png" bindtap="interrupt" wx:if="{{interrupt}}"></image>
+        <image src="../assets/未准备.png" bindtap="getReady" wx:if="{{getReady}}"></image>
+        <image src="../assets/已准备.png" bindtap="cancelReady" wx:if="{{cancelReady}}"></image>
+        <image src="../assets/开始可用.png" bindtap="start" wx:if="{{start}}"></image>
+        <image src="../assets/开始不可用.png" bindtap="waitAllReady" wx:if="{{waitAllReady}}"></image>
+      </view>
+    </view>
+    <view class="chatPart-child-4">
+      <view class="chatPart-send" bindtap="sendChatMessage">发送</view>
+    </view>
+  </view>
+
+  <makegroup game="{{game}}" Display="{{Display}}" wx:if="{{Display.ifshowMakeGroup}}"></makegroup>
+
+  <killmerlin Display="{{Display}}" game="{{game}}" tmpPlayerList="{{tmpPlayerList}}"></killmerlin>
+
+  <info wx:if="{{ifShowInfo}}" playerInfo="{{playerInfo}}" cacheFollow="{{cacheFollow}}" bindtap="hideInfo"></info>
+</view>

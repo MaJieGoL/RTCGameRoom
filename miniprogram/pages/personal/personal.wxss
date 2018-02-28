@@ -1,0 +1,227 @@
+.container {
+  background-color: #EFEFF4;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+.top, .middle, .bottom {
+  background-color: #fff;
+}
+
+.top {
+  width: 100%;
+  height: 70px;
+  display: flex;
+}
+
+.top-child {
+  flex: 1;
+  display: flex;
+}
+
+.top-left-child-1 {
+  flex: 35;
+  position: relative;
+}
+
+.top-left-child-1 image{
+  width: 40px;
+  height: 40px;
+  position: absolute;
+  margin-left: -20px;
+  margin-top: -20px;
+  top: 50%;
+  left: 50%;
+}
+
+.top-left-child-2 text {
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.top-left-child-2-text-2 {
+  border: 1px solid #19AD19;
+  color: #19AD19;
+  font-size: 12px;
+  border-radius: 3px;
+  z-index: 5000;
+}
+
+.top-left-child-2-text-3 {
+  border: 1px solid #19AD19;
+  color: #19AD19;
+  font-size: 12px;
+  border-radius: 3px;
+  z-index: 5000;
+}
+
+.top-left-child-2 {
+  flex: 65;
+  text-align: left;
+  line-height: 70px;
+}
+
+.top-left-child {
+  height: 70px;
+}
+
+.top-right-child-1 {
+  flex: 75;
+}
+
+.top-right-child-2 {
+  flex: 25;
+}
+
+.top-right-child-1-child {
+  width: 118px;
+  height: 53px;
+  margin: auto;
+  margin-top: 8.5px;
+  background-color: #fff;
+  display: flex;
+}
+
+.top-right-child-1-child-child text {
+  font-size: 12px;
+  width: 100%;
+  height: 15px;
+  display: block;
+  line-height: 15px;
+  text-align: center;
+}
+
+.top-right-child-1-child-child text:nth-child(1) {
+  margin-top: 10px;
+  color: #707684;
+}
+
+.top-right-child-1-child-child text:nth-child(2) {
+  margin-top: 3px;
+}
+
+.top-right-child-1-child-child {
+  flex: 1;
+}
+
+.top-right-child-1-child-child-1 {
+  border-right: 1px solid #C7C7CD;
+}
+
+.top-right-child-2 {
+  text-align: center;
+  line-height: 70px;
+  font-size: 23px;
+  color: #003366;
+}
+
+.middle {
+  margin-top: 10px;
+}
+
+.middle >div:nth-child(2) {
+  width: 100%;
+  height: 90px;
+  display: flex;
+}
+
+.middle >div:nth-child(2) >div {
+  flex: 1;
+  position: relative;
+}
+
+.middle >div:nth-child(2) >div >div {
+  position: absolute;
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  margin-left: -36px;
+  margin-top: -36px;
+  top: 50%;
+  left: 50%;
+}
+
+.bottom {
+  margin-top: 10px;
+}
+
+.bottom-container {
+  width: 95%;
+  margin-left: 5%;
+}
+
+.bottom-ul-li-image {
+  height: 56px;
+  width: 56px;
+  margin-top: 2px;
+}
+
+.bottom-ul {
+  list-style: none;
+}
+
+.bottom-ul-li {
+  height: 60px;
+  position: relative;
+  border-bottom: 1px solid #E5E5E5;
+}
+
+.bottom-ul-li:first-child {
+  border-top: 1px solid #E5E5E5;
+}
+
+.role {
+  height: 16px;
+  width: 58px;
+  color: #fff;
+  text-align: center;
+  line-height: 16px;
+  position: absolute;
+  top: 22px;
+  left: 50px;
+  font-size: 13px;
+  border-radius: 3px;
+}
+
+.role image {
+  height: 16px;
+  width: 40px;
+}
+
+.result image {
+  width: 120px;
+  height: 28px;
+}
+
+.result {
+  position: absolute;
+  top: 16px;
+  left: 115px;
+}
+
+.time {
+  position: absolute;
+  bottom: 10px;
+  right: 20px;
+  font-size: 12px;
+  height: 18px;
+  line-height: 18px;
+  color: #999999;
+}
+
+.bottom-container-child-1 {
+  height: 25px;
+  line-height: 25px;
+  font-size: 12px;
+}
+
+.MVPsign image {
+  width: 10px;
+  height: 13px;
+  position: absolute;
+  top: 12px;
+  right: 45px;
+}

@@ -7,6 +7,7 @@ var config = require('./config.js');
 
 // 获取微信登录信息，用于获取openid
 function getLoginInfo(options) {
+  console.log("开始执行getLoginInfo",options);
   wx.login({
     success: function (res) {
       if (res.code) {
@@ -65,9 +66,10 @@ function proto_getLoginInfo(options) {
       }
       console.log('获取IM登录信息成功: ', ret.data);
       ret.data.serverDomain = config.url + '/weapp/' + options.type + '/';
-      ret.data.userName = options.userInfo.nickName;
+      // ret.data.userName = options.userInfo.nickName;
       // rtcroom初始化
       rtcroom.init({
+        userInfo: options.userInfo,
         data: ret.data,
         success: options.success,
         fail: options.fail

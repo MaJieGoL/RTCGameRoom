@@ -20,7 +20,8 @@ var serverDomain = '',		// 后台域名
 		userSig: '',		// IM登录凭证
 		sdkAppID: '',		// IM应用ID
 		accountType: '',	// 账号集成类型
-		accountMode: 0,		//帐号模式，0-表示独立模式，1-表示托管模式		
+		accountMode: 0,		//帐号模式，0-表示独立模式，1-表示托管模式
+    userInfo:{},  //加入wx.getUserInfo获取到的完整用户信息
 	},
 	// 房间信息
 	roomInfo = {
@@ -107,8 +108,9 @@ function init(options) {
 	accountInfo.userSig = options.data.userSig;
 	accountInfo.sdkAppID = options.data.sdkAppID;
 	accountInfo.accountType = options.data.accType;
-  accountInfo.userName = options.data.userName || userName[Math.floor(Math.random()*10)] || accountInfo.userID;
+  accountInfo.userName = options.userInfo.nickName || userName[Math.floor(Math.random()*10)] || accountInfo.userID;
 	accountInfo.userAvatar = '123';
+  accountInfo.userInfo = options.userInfo;
 	// 登录IM
 	loginIM({
     success: options.success,
@@ -233,7 +235,8 @@ function afterLoginIM(options) {
 	// webim登录成功
 	console.log('IM登录成功');
   options.callback.success && options.callback.success({
-    userName: accountInfo.userName
+    userName: accountInfo.userName,
+    userInfo: accountInfo.userInfo
   });
 }
 function afterJoinBigGroup(options) {

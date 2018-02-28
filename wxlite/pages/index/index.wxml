@@ -1,8 +1,9 @@
-<!--pages/main/main.wxml-->
+<!--pages/index/index.wxml-->
+
 <view class="page">
   <view class="userinfo">
     <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}"></image>
-    <view class="userinfo-nickName">{{userInfo.nickName}}</view>
+    <view class="userinfo-nickname">{{userInfo.nickName}}</view>
   </view>
 
     <view class="weui-cells__title">选择玩家</view>
@@ -44,6 +45,20 @@
           </view>
         </view>
       </view>
+    </view>
+
+    <view class="page__bd page__bd_spacing">
+      <block wx:for="{{menu.mainBtn}}" wx:key="id">
+        <view class="kind-list">
+          <view class="kind-list__item">
+            <view id="{{item.id}}" class="weui-flex kind-list__item-hd {{item.open ? 'kind-list__item-hd_show' : ''}}" bindtap="kindToggle">
+              <image class="kind-list__img" src="{{item.icon}}"></image>
+              <view class="weui-flex__item kind-list__name">{{item.name}}</view>
+              <image class="kind-list__img" src="../Resources/index/arrow.png"></image>
+            </view>
+          </view>
+        </view>
+      </block>
     </view>
 
     <view class="start-game-button" bindtap="continueGame" wx:if="{{game}}">
@@ -215,4 +230,5 @@
       <text class="weui-footer__text">Copyright © 2016-2017 Gameofswiper-itemes</text>
     </view>
 </view>
+
 

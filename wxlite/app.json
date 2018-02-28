@@ -1,6 +1,6 @@
 {
   "pages": [
-    "pages/main/main",
+    "pages/index/index",
     "pages/multiroom/room/room",
     "pages/multiroom/createroom/createroom",
     "pages/multiroom/joinroom/joinroom"
@@ -9,10 +9,11 @@
     "request": 60000
   },
   "window": {
+    "navigationStyle": "custom",
     "backgroundColor": "#888",
     "backgroundTextStyle": "dark",
-    "navigationBarBackgroundColor": "#000",
-    "navigationBarTitleText": "腾讯视频云",
-    "navigationBarTextStyle": "#fff"
+    "navigationBarBackgroundColor": "#ffff",
+    "navigationBarTitleText": "Game of Lies",
+    "navigationBarTextStyle": "black"
   }
 }

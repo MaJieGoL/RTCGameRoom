@@ -1,4 +1,4 @@
-// pages/main/main.js
+// pages/index/index.js
 var getlogininfo = require('../../getlogininfo.js');
 
 Page({
@@ -11,6 +11,32 @@ Page({
     isGetLoginInfo: false,
     canShow: 0,
     tapTime: '',		// 防止两次点击操作间隔太快
+
+    /**
+     * 主菜单
+     */
+    menu: {
+      mainBtn: [
+        {
+          id: "startGame",
+          name: "开始游戏",
+          des: "在线匹配玩家开始游戏",
+          icon: "../Resources/index/startgame.png",
+        },
+        {
+          id: "createRoom",
+          name: "创建房间",
+          des: "阿瓦隆·刺秦·抵抗组织",
+          icon: "../Resources/index/createroom.png",
+        },
+        {
+          id: "joinRoom",
+          name: "加入游戏",
+          des: "输入房间号加入游戏",
+          icon: "../Resources/index/joinroom.png",
+        },
+      ]
+    }
   },
 
   /**
@@ -50,9 +76,9 @@ Page({
       success: function (ret) {
         self.data.firstshow = false;
         self.data.isGetLoginInfo = true;
-        console.log("getLoginInfo收到信息：",ret);
+        console.log("getLoginInfo收到信息：", ret);
         self.setData({
-          userInfo: ret
+          userInfo: ret.userInfo
         });
         wx.hideLoading();
       },
@@ -75,41 +101,41 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-  
+
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
   onHide: function () {
-  
+
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
-  
+
   },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-  
+
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-  
+
   },
 
   /**
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
-  
+
   }
 })
